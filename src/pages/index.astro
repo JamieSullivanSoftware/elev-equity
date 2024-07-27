@@ -1,19 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Nav from '../components/Nav.astro';
 ---
 
 <Layout title='Welcome to Astro.'>
   <main>
-    <h1 class='lf-bolditalic'>ELEV EQUITY</h1>
-    <h1 class='lf-semibold'>ELEV EQUITY</h1>
-    <h1 class='lf-medium'>ELEV EQUITY</h1>
-    <p class='sans-regular'>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
-      possimus quis similique maiores animi, hic velit facilis doloremque
-      adipisci nesciunt alias eligendi! Aperiam, magni cum! Hic ducimus maiores
-      itaque delectus.
-    </p>
+    <Nav
+      links={[
+        { text: 'Test', href: 'test' },
+        { text: 'Test', href: 'test' },
+        { text: 'Test', href: 'test' },
+        { text: 'Test', href: 'test' },
+      ]}
+    />
   </main>
 </Layout>
 

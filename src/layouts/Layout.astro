@@ -78,8 +78,21 @@ const { title } = Astro.props;
     --body-font: 'SourceSansRegular', sans-serif;
   }
 
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
   html {
     background: var(--white);
+  }
+
+  .wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 620rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
   }
 
   .lf-bolditalic {

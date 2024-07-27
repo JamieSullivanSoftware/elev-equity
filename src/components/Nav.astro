@@ -1,0 +1,65 @@
+---
+interface Link {
+  text: string;
+  href: string;
+}
+
+interface Props {
+  links: Link[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav>
+  <div class='wrapper'>
+    <img
+      src='/Logo.svg'
+      alt=''
+    />
+    <ul>
+      {
+        links.map((link: Link) => (
+          <li>
+            <a
+              class='lf-medium'
+              href={link.href}
+            >
+              {link.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  nav {
+    background-color: var(--dark);
+    padding: 1rem 0rem;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+    align-items: flex-end;
+  }
+
+  a {
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--neutral-dark);
+  }
+</style>
