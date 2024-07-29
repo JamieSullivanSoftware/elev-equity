@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../images/logo.svg';
+
 interface Link {
   text: string;
   href: string;
@@ -13,10 +16,18 @@ const { links } = Astro.props;
 
 <nav>
   <div class='wrapper'>
-    <img
-      src='/Logo.svg'
-      alt=''
-    />
+    <a href='#'>
+      <img
+        src='/Logo.svg'
+        alt=''
+      />
+      <Image
+        src={logo}
+        alt='Logo'
+        width='60'
+        height='50'
+      />
+    </a>
     <ul>
       {
         links.map((link: Link) => (
@@ -47,11 +58,10 @@ const { links } = Astro.props;
   }
 
   ul {
-    list-style: none;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, min-content);
     grid-gap: 1rem;
-    align-items: flex-end;
+    list-style: none;
   }
 
   a {
