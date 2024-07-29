@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../images/logo.svg';
+import { Icon } from 'astro-icon/components';
 
 interface Link {
   text: string;
@@ -15,7 +16,7 @@ const { links } = Astro.props;
 ---
 
 <nav>
-  <div class='wrapper'>
+  <div class='wrapper container'>
     <a href='#'>
       <img
         src='/Logo.svg'
@@ -28,6 +29,14 @@ const { links } = Astro.props;
         height='50'
       />
     </a>
+
+    <Icon
+      class='mobile-icon'
+      name='material-symbols:menu-rounded'
+      width={40}
+      height={40}
+    />
+
     <ul>
       {
         links.map((link: Link) => (
@@ -51,17 +60,19 @@ const { links } = Astro.props;
     padding: 1rem 0rem;
   }
 
-  div {
+  .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(4, min-content);
-    grid-gap: 1rem;
-    list-style: none;
+    display: none;
+  }
+
+  .mobile-icon {
+    display: block;
+    color: var(--white);
   }
 
   a {
@@ -71,5 +82,18 @@ const { links } = Astro.props;
 
   a:hover {
     color: var(--neutral-dark);
+  }
+
+  @media only screen and (min-width: 480px) {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(4, min-content);
+      grid-gap: 1rem;
+      list-style: none;
+    }
+
+    .mobile-icon {
+      display: none;
+    }
   }
 </style>
