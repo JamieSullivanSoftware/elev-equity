@@ -1,7 +1,15 @@
+---
+import Button from './Button.astro';
+---
+
 <div class='hero-image'>
   <div class='hero-text'>
     <h1 class='lf-semibold'>Business Consulting & Advisory Services</h1>
-    <button>Free Consultation</button>
+    <Button
+      className='cta'
+      text='Free Consultation'
+      onClick={() => console.log('click')}
+    />
   </div>
 </div>
 

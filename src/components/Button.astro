@@ -1,0 +1,34 @@
+---
+type Variant = 'primary' | 'secondary';
+type Type = 'button' | 'submit';
+
+interface Props {
+  className: string;
+  text: string;
+  variant?: Variant;
+  type?: Type;
+}
+
+const { className, text, variant = 'primary', type = 'button' } = Astro.props;
+---
+
+<button
+  class={`btn btn-${variant} ${className}`}
+  type={type}
+>
+  {text}
+</button>
+
+<style lang='scss'>
+  @import '../styles/variables.scss';
+</style>
+
+<script>
+  const ctaButtons = document.querySelectorAll('button.cta');
+
+  ctaButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      console.log('Button was clicked!');
+    });
+  });
+</script>

@@ -54,7 +54,7 @@ const { links } = Astro.props;
   @import '../styles/variables.scss';
 
   nav {
-    background-color: var(--dark);
+    background-color: $dark;
     padding: 1rem 0rem;
   }
 
@@ -70,16 +70,16 @@ const { links } = Astro.props;
 
   .mobile-icon {
     display: block;
-    color: var(--white);
+    color: $white;
   }
 
   a {
-    color: var(--white);
+    color: $white;
     text-decoration: none;
   }
 
   a:hover {
-    color: var(--neutral-dark);
+    color: $neutral-dark;
   }
 
   @media only screen and (min-width: $mobile) {
