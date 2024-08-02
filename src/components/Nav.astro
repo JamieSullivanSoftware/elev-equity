@@ -50,7 +50,9 @@ const { links } = Astro.props;
   </div>
 </nav>
 
-<style>
+<style lang='scss'>
+  @import '../styles/variables.scss';
+
   nav {
     background-color: var(--dark);
     padding: 1rem 0rem;
@@ -80,7 +82,7 @@ const { links } = Astro.props;
     color: var(--neutral-dark);
   }
 
-  @media only screen and (min-width: 480px) {
+  @media only screen and (min-width: $mobile) {
     ul {
       display: grid;
       grid-template-columns: repeat(4, min-content);
