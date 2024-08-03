@@ -1,0 +1,16 @@
+// Colors
+$primary: #2e1f8b;
+$dark: #000413;
+$white: #fefeff;
+$neutral-light: #e7e7f0;
+$neutral-dark: #a29fb9;
+
+// Breakpoints
+$tablet: 48rem;
+$mobile: 30rem;
+
+// Button
+$primary-button-active-shadow: inset 0.04rem 0.04rem 0.3rem $dark;
+$primary-button-focus-shadow: 0 0 0 0.15rem $dark;
+$secondary-button-active-shadow: inset 0.04rem 0.04rem 0.15rem $dark;
+$secondary-button-focus-shadow: 0 0 0 0.15rem $dark;

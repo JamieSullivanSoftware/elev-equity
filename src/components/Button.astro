@@ -1,0 +1,95 @@
+---
+type Variant = 'primary' | 'secondary';
+type Type = 'button' | 'submit';
+
+interface Props {
+  className: string;
+  text: string;
+  variant?: Variant;
+  type?: Type;
+}
+
+const { className, text, variant = 'primary', type = 'button' } = Astro.props;
+---
+
+<button
+  class={`lf-medium btn btn_${variant} ${className}`}
+  type={type}
+>
+  {text}
+</button>
+
+<style lang='scss'>
+  @use 'sass:color';
+  @import '../styles/variables.scss';
+
+  button {
+    border: none;
+    cursor: pointer;
+    outline: 0;
+  }
+
+  button:focus,
+  button:focus-visible,
+  a:focus,
+  a:focus-visible {
+    outline: 0;
+  }
+
+  .btn {
+    padding: 1.25rem 2rem;
+    border-radius: 0.5rem;
+
+    &_primary {
+      background-color: $primary;
+      color: $white;
+
+      &:hover {
+        background-color: color.scale($primary, $lightness: 15%);
+      }
+
+      &:active {
+        -webkit-box-shadow: $primary-button-active-shadow;
+        -moz-box-shadow: $primary-button-active-shadow;
+        box-shadow: $primary-button-active-shadow;
+      }
+
+      &:focus-visible {
+        -webkit-box-shadow: $primary-button-focus-shadow;
+        -moz-box-shadow: $primary-button-focus-shadow;
+        box-shadow: $primary-button-focus-shadow;
+      }
+    }
+
+    &_secondary {
+      background-color: $white;
+      color: $dark;
+
+      &:hover {
+        background-color: color.scale($white, $lightness: -2%);
+      }
+
+      &:active {
+        -webkit-box-shadow: $secondary-button-active-shadow;
+        -moz-box-shadow: $secondary-button-active-shadow;
+        box-shadow: $secondary-button-active-shadow;
+      }
+
+      &:focus-visible {
+        -webkit-box-shadow: $secondary-button-focus-shadow;
+        -moz-box-shadow: $secondary-button-focus-shadow;
+        box-shadow: $secondary-button-focus-shadow;
+      }
+    }
+  }
+</style>
+
+<script>
+  const ctaButtons = document.querySelectorAll('button.cta');
+
+  ctaButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      console.log('CTA button was clicked!');
+    });
+  });
+</script>

@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../images/logo.svg';
+import { Icon } from 'astro-icon/components';
+
+interface Link {
+  text: string;
+  href: string;
+}
+
+interface Props {
+  links: Link[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav>
+  <div class='wrapper container'>
+    <a href='#'>
+      <Image
+        src={logo}
+        alt='Logo'
+        width='60'
+        height='50'
+      />
+    </a>
+
+    <Icon
+      class='mobile-icon'
+      name='material-symbols:menu-rounded'
+      width={40}
+      height={40}
+    />
+
+    <ul>
+      {
+        links.map((link: Link) => (
+          <li>
+            <a
+              class='lf-medium'
+              href={link.href}
+            >
+              {link.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style lang='scss'>
+  @import '../styles/variables.scss';
+
+  nav {
+    background-color: $dark;
+    padding: 1rem 0rem;
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  ul {
+    display: none;
+  }
+
+  .mobile-icon {
+    display: block;
+    color: $white;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: $neutral-dark;
+  }
+
+  @media only screen and (min-width: $mobile) {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(4, min-content);
+      grid-gap: 1rem;
+      list-style: none;
+    }
+
+    .mobile-icon {
+      display: none;
+    }
+  }
+</style>

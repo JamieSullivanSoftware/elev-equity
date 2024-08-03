@@ -1,51 +1,110 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta
+      name='description'
+      content='Astro description'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
+    <link
+      rel='icon'
+      type='image/svg+xml'
+      href='/favicon.svg'
+    />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+<style is:global lang='scss'>
+  @import '../styles/variables.scss';
+
+  // Overrides
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background: $white;
+  }
+
+  // Global
+  .wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 80rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+  // Fonts
+  @font-face {
+    font-family: 'LibreFranklinSemiBold';
+    src: url('/fonts/LibreFranklin-SemiBold.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'LibreFranklinMedium';
+    src: url('/fonts/LibreFranklin-Medium.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'SourceSansRegular';
+    src: url('/fonts/SourceSans-Regular.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'SourceSansMedium';
+    src: url('/fonts/SourceSans-Medium.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  .lf-semibold {
+    font-family: 'LibreFranklinSemiBold', sans-serif;
+    /* line-height: 2rem; */
+    font-size: 2.5rem;
+  }
+
+  .lf-medium {
+    font-family: 'LibreFranklinMedium', sans-serif;
+    /* line-height: 2rem; */
+    font-size: 1.25rem;
+  }
+
+  .sans-regular {
+    font-family: 'SourceSansRegular', sans-serif;
+    line-height: 2rem;
+    font-size: 1.25rem;
+  }
+
+  .sans-medium {
+    font-family: 'SourceSansMedium', sans-serif;
+    line-height: 2rem;
+    font-size: 1.5rem;
+  }
 </style>
