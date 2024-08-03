@@ -34,6 +34,26 @@ const { title } = Astro.props;
   </body>
 </html>
 <style is:global lang='scss'>
+  // Overrides
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background: var(--white);
+  }
+
+  // Global
+  .wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 80rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+  // Fonts
   @font-face {
     font-family: 'LibreFranklinSemiBold';
     src: url('/fonts/LibreFranklin-SemiBold.ttf') format('truetype');
@@ -60,23 +80,6 @@ const { title } = Astro.props;
     src: url('/fonts/SourceSans-Medium.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    background: var(--white);
-  }
-
-  .wrapper {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 80rem;
-    padding-right: 2rem;
-    padding-left: 2rem;
   }
 
   .lf-semibold {
