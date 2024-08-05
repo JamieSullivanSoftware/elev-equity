@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../images/logo.svg';
+import logo from '../../images/logo.svg';
 import { Icon } from 'astro-icon/components';
 
 interface Link {
@@ -52,7 +52,7 @@ const { links } = Astro.props;
 
 <style lang='scss'>
   @use 'sass:color';
-  @import '../styles/variables.scss';
+  @import '../../styles/variables.scss';
 
   nav {
     background-color: $dark;
