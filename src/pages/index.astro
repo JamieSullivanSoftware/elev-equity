@@ -8,19 +8,25 @@ import CTA from '../components/sections/CTA.astro';
 import Process from '../components/sections/Process.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import Contact from '../components/sections/Contact.astro';
+import Footer from '../components/sections/Footer.astro';
+
+export interface Link {
+  text: string;
+  href: string;
+}
+
+const links = [
+  { text: 'Services', href: 'test' },
+  { text: 'About', href: 'test' },
+  { text: 'Process', href: 'test' },
+  { text: 'FAQ', href: 'test' },
+  { text: 'Contact', href: 'test' },
+];
 ---
 
 <Layout title='Elev Equity'>
   <main>
-    <Nav
-      links={[
-        { text: 'Services', href: 'test' },
-        { text: 'About', href: 'test' },
-        { text: 'Process', href: 'test' },
-        { text: 'FAQ', href: 'test' },
-        { text: 'Contact', href: 'test' },
-      ]}
-    />
+    <Nav links={links} />
     <Hero />
     <Services />
     <About />
@@ -28,5 +34,6 @@ import Contact from '../components/sections/Contact.astro';
     <Process />
     <FAQ />
     <Contact />
+    <Footer links={links} />
   </main>
 </Layout>
