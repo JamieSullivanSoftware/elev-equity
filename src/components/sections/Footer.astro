@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../images/text-logo.svg';
+import { Icon } from 'astro-icon/components';
+
+import type { Link } from '../../pages/index.astro';
+
+interface Props {
+  links: Link[];
+}
+
+const { links } = Astro.props;
+---
+
+<footer class='wrapper'>
+  <section>
+    <div class='top'>
+      <a href='#'>
+        <Image
+          src={logo}
+          alt='Logo'
+          width='140'
+          height='140'
+        />
+      </a>
+      <p class='sans-regular'>
+        Our primary goal of our is to empower companies to achieve sustainable
+        growth by providing expert financial consulting, strategic planning, and
+        innovative solutions tailored to their unique needs.
+      </p>
+      <ul>
+        {
+          links.map((link: Link) => (
+            <li>
+              <a
+                class='lf-medium'
+                href={link.href}
+              >
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+  <div class='bottom'>
+    <div class='social'>
+      <a href=''>
+        <Icon
+          name='fa6-brands:facebook'
+          width={36}
+          height={36}
+        />
+      </a>
+      <a href=''>
+        <Icon
+          name='fa6-brands:linkedin'
+          width={36}
+          height={36}
+        />
+      </a>
+      <a href=''>
+        <Icon
+          name='fa6-brands:instagram'
+          width={36}
+          height={36}
+        />
+      </a>
+    </div>
+    <div class='copyright sans-regular'>
+      <span>
+        <Icon name='material-symbols:copyright-outline-rounded' />
+      </span>
+      <span>2024</span>
+      <span><a href=''>jamiesullivansoftware.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<style lang='scss'>
+  @use 'sass:color';
+  @import '../../styles/variables.scss';
+
+  footer {
+    background-color: $dark;
+    color: $white;
+  }
+
+  section {
+    border-bottom: 0.125rem solid $white;
+  }
+
+  .container {
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      max-width: 22rem;
+    }
+
+    ul {
+      list-style: none;
+      text-align: right;
+
+      li:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    a {
+      color: $white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: color.scale($primary, $lightness: 75%);
+    }
+  }
+
+  .bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding-bottom: 4rem;
+
+    a {
+      color: $white;
+    }
+
+    .social {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1.5rem;
+      margin: 4rem 0 2rem;
+    }
+
+    .copyright {
+      display: grid;
+      grid-template-columns: repeat(3, min-content);
+      align-items: center;
+      grid-gap: 0.5rem;
+
+      span:first-child {
+        display: flex;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+import { Icon } from 'astro-icon/components';
+import Input from '../common/Input.astro';
+---
+
+<section class='wrapper'>
+  <div class='container'>
+    <div class='left-section'>
+      <div>
+        <h2 class='lf-semibold'>Contact Us</h2>
+        <div class='sans-regular'>
+          <p>
+            Leave your details and a short message and we’ll get back to you
+            within 24 hours
+          </p>
+          <div class='contact'>
+            <Icon
+              name='material-symbols:phone-enabled'
+              width={24}
+              height={24}
+            />
+            <span>henrique@elevequity.com</span>
+          </div>
+          <div class='contact'>
+            <Icon
+              name='material-symbols:mail-rounded'
+              width={24}
+              height={24}
+            />
+            <span>henrique@elevequity.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form action=''>
+        <Input
+          labelText='Full name'
+          name='fullname'
+          value=''
+        />
+        <Input
+          labelText='Company name'
+          name='company'
+          value=''
+        />
+        <Input
+          labelText='Email address'
+          name='email'
+          value=''
+        />
+        <Input
+          labelText='Your message'
+          name='message'
+          value=''
+          isTextarea
+        />
+      </form>
+    </div>
+  </div>
+</section>
+
+<style lang='scss'>
+  @import '../../styles/variables.scss';
+
+  section {
+    background-color: $neutral-light;
+    color: $dark;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .left-section {
+    display: grid;
+
+    p {
+      margin: 2rem 0;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      margin-top: 0.75rem;
+
+      span {
+        margin-left: 0.75rem;
+      }
+    }
+  }
+</style>

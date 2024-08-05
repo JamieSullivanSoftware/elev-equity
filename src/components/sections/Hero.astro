@@ -1,5 +1,5 @@
 ---
-import Button from './Button.astro';
+import Button from '../common/Button.astro';
 ---
 
 <div class='hero-image'>
@@ -13,14 +13,14 @@ import Button from './Button.astro';
 </div>
 
 <style lang='scss'>
-  @import '../styles/variables.scss';
+  @import '../../styles/variables.scss';
 
   .hero-image {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 44rem;
-    background-image: url('../images/hero.jpg');
+    background-image: url('../../images/hero.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
