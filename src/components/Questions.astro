@@ -1,0 +1,25 @@
+---
+import QuestionDropdown from './QuestionDropdown.astro';
+
+export interface Question {
+  text: string;
+  answer: string;
+}
+
+interface Props {
+  questions: Question[];
+}
+
+const { questions } = Astro.props;
+---
+
+<div>
+  {
+    questions.map((question: Question, i: number) => (
+      <QuestionDropdown
+        question={question}
+        index={i + 1}
+      />
+    ))
+  }
+</div>
