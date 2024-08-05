@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { Question } from './Questions.astro';
+
+interface Props {
+  question: Question;
+  index: number;
+}
+
+const { question, index } = Astro.props;
+const { text, answer } = question;
+---
+
+<div class='sans-regular'>
+  <span>{`${index} .`}</span>
+  <span>{text}</span>
+  <button>
+    <Icon
+      name='material-symbols:close'
+      width={30}
+      height={30}
+    />
+  </button>
+</div>
+
+<style lang='scss'>
+  @import '../styles/variables.scss';
+
+  div {
+    display: grid;
+    grid-template-columns: max-content max-content auto;
+    grid-gap: 0.5rem;
+    align-items: center;
+    color: $dark;
+    background-color: $neutral-light;
+    padding: 1.25rem 1rem;
+    margin-bottom: 3rem;
+
+    button:last-child {
+      display: flex;
+      justify-self: flex-end;
+      background: transparent;
+      border: 0;
+    }
+  }
+
+  div:last-child {
+    margin-bottom: 0;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll('button');
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      console.log(button.innerHTML);
+    });
+  });
+</script>

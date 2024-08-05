@@ -1,0 +1,68 @@
+---
+import Questions, { type Question } from './Questions.astro';
+
+const questions: Question[] = [
+  {
+    text: 'How can financial consulting benefit my business?',
+    answer:
+      'Our consulting optimises strategies for sustainable growth and improved financial performance.',
+  },
+  {
+    text: 'How can financial consulting benefit my business?',
+    answer:
+      'Our consulting optimises strategies for sustainable growth and improved financial performance.',
+  },
+  {
+    text: 'How can financial consulting benefit my business?',
+    answer:
+      'Our consulting optimises strategies for sustainable growth and improved financial performance.',
+  },
+  {
+    text: 'How can financial consulting benefit my business?',
+    answer:
+      'Our consulting optimises strategies for sustainable growth and improved financial performance.',
+  },
+];
+---
+
+<section class='wrapper'>
+  <div class='container'>
+    <div class='left-section'>
+      <div>
+        <h2 class='lf-semibold'>Got a question?</h2>
+        <h2 class='lf-semibold'>Get your answer</h2>
+      </div>
+      <div class='sans-regular'>
+        <p>Quick answers to questions you may have.</p>
+        <p>Can’t find what you’re looking for?</p>
+        <p>Get in touch with us below.</p>
+      </div>
+    </div>
+    <div>
+      <Questions questions={questions} />
+    </div>
+  </div>
+</section>
+
+<style lang='scss'>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .left-section {
+    display: grid;
+
+    h2:first-child {
+      margin-bottom: 1.5rem;
+    }
+
+    div:last-child {
+      align-self: flex-end;
+
+      p:first-child {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+</style>

@@ -1,65 +1,101 @@
----
-import { Image } from 'astro:assets';
-import henrique from '../images/henrique.jpg';
----
-
 <section class='wrapper'>
+  <h2 class='lf-semibold'>How We Work</h2>
+  <div class='guide'>
+    <div class='line'></div>
+    <div class='numbers sans-regular'>
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+    </div>
+  </div>
   <div class='container'>
-    <div class='info'>
-      <h2 class='lf-semibold'>Who We Are</h2>
+    <div>
+      <h3 class='sans-medium'>Initial Phone Call</h3>
       <p class='sans-regular'>
-        Henrique, with a decade of experience in financial consulting, leads the
-        business with a deep understanding of strategic planning and market
-        analysis. His expertise spans budgeting, forecasting, financial
-        planning, and funding acquisition.
-      </p>
-      <p class='sans-regular'>
-        Adept at optimising business operations through process improvements,
-        task automation, and resource management. He also champions the use of
-        technology to enhance efficiency and fosters a culture of innovation,
-        helping businesses stay competitive by developing and improving products
-        and services. His comprehensive approach ensures clients are
-        well-equipped to navigate industry trends and achieve their goals.
+        Initial Phone Call Our process begins with an initial phone call to
+        understand your business needs and objectives. This brief conversation
+        helps us gather essential information and determine how we can best
+        support your goals.
       </p>
     </div>
-    <Image
-      class='image'
-      src={henrique}
-      alt='Henrique'
-      width='318'
-      height='359'
-    />
+    <div>
+      <h3 class='sans-medium'>Video Consultation</h3>
+      <p class='sans-regular'>
+        Next, we conduct a detailed video call consultation. During this
+        session, we dive deeper into your business operations, challenges, and
+        opportunities, allowing us to tailor our services to your specific
+        requirements.
+      </p>
+    </div>
+    <div>
+      <h3 class='sans-medium'>Financial Plan</h3>
+      <p class='sans-regular'>
+        Following the consultation, we develop a comprehensive financial plan.
+        This plan includes budgeting, forecasting, market analysis, and
+        strategic recommendations designed to drive your business toward its
+        goals.
+      </p>
+    </div>
+    <div>
+      <h3 class='sans-medium'>Implement & Grow</h3>
+      <p class='sans-regular'>
+        Finally, we assist in implementing the financial plan, providing ongoing
+        support and adjustments as needed. Our goal is to help your business
+        grow efficiently and sustainably, leveraging our expertise to ensure
+        long-term success.
+      </p>
+    </div>
   </div>
+
+  <style lang='scss'>
+    @import '../styles/variables.scss';
+
+    section {
+      background-color: $neutral-light;
+      color: $dark;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .guide {
+      position: relative;
+      margin: 3rem 6rem 2.5rem;
+
+      .line {
+        border-bottom: 0.125rem solid $dark;
+      }
+
+      .numbers {
+        bottom: -1.25rem;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 0.125rem solid $dark;
+          border-radius: 50%;
+          width: 2.5rem;
+          height: 2.5rem;
+          background-color: $white;
+        }
+      }
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem;
+
+      h3 {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
 </section>
-
-<style lang='scss'>
-  @import '../styles/variables.scss';
-
-  section {
-    background-color: $dark;
-    color: $white;
-  }
-
-  h2 {
-    border-bottom: 0.15rem solid $white;
-    padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .container {
-    display: grid;
-    grid-template-columns: 7fr 3fr;
-    align-items: center;
-    grid-gap: 1.5rem;
-
-    > :first-child p {
-      margin-bottom: 1rem;
-    }
-
-    .image {
-      border-radius: 1rem;
-      justify-self: flex-end;
-      align-self: flex-end;
-    }
-  }
-</style>
