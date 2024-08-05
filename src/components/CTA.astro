@@ -1,0 +1,40 @@
+---
+import Button from './Button.astro';
+---
+
+<section class='wrapper'>
+  <span class='sans-medium'>
+    Grow your <strong><em>equity</em></strong> and make your business thrive</span
+  >
+  <div class='button'>
+    <Button
+      className='cta'
+      text='Contact Us'
+      variant='secondary'
+    />
+  </div>
+</section>
+
+<style lang='scss'>
+  @import '../styles/variables.scss';
+
+  section {
+    background-color: $primary;
+    color: $white;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+
+    span {
+      grid-column-start: 1;
+      grid-column-end: 9;
+      justify-self: center;
+    }
+
+    .button {
+      grid-column-start: 10;
+      grid-column-end: 12;
+      justify-self: center;
+    }
+  }
+</style>
