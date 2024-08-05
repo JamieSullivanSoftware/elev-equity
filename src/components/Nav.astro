@@ -51,6 +51,7 @@ const { links } = Astro.props;
 </nav>
 
 <style lang='scss'>
+  @use 'sass:color';
   @import '../styles/variables.scss';
 
   nav {
@@ -79,13 +80,13 @@ const { links } = Astro.props;
   }
 
   a:hover {
-    color: $neutral-dark;
+    color: color.scale($primary, $lightness: 75%);
   }
 
   @media only screen and (min-width: $mobile) {
     ul {
       display: grid;
-      grid-template-columns: repeat(4, min-content);
+      grid-template-columns: repeat(5, min-content);
       grid-gap: 1rem;
       list-style: none;
     }

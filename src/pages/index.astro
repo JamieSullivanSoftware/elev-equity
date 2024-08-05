@@ -2,6 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import About from '../components/About.astro';
+import CTA from '../components/CTA.astro';
+import Process from '../components/Process.astro';
 ---
 
 <Layout title='Elev Equity'>
@@ -11,9 +15,14 @@ import Hero from '../components/Hero.astro';
         { text: 'Services', href: 'test' },
         { text: 'About', href: 'test' },
         { text: 'Process', href: 'test' },
+        { text: 'FAQ', href: 'test' },
         { text: 'Contact', href: 'test' },
       ]}
     />
     <Hero />
+    <Services />
+    <About />
+    <CTA />
+    <Process />
   </main>
 </Layout>

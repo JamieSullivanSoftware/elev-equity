@@ -1,0 +1,89 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section class='wrapper'>
+  <h2 class='lf-semibold'>What We Do</h2>
+  <div class='container'>
+    <div>
+      <Icon
+        class='icon'
+        name='fa6-solid:coins'
+        width={64}
+        height={64}
+      />
+      <h3 class='sans-medium'>Finance</h3>
+      <p class='sans-regular'>
+        We provide comprehensive accounting and financial services, including
+        budgeting and forecasting, market analysis and pricing models, financial
+        planning and funding acquisition, and cash flow management.
+      </p>
+    </div>
+    <div>
+      <Icon
+        class='icon'
+        name='fa6-solid:city'
+        width={80}
+        height={64}
+      />
+      <h3 class='sans-medium'>Operations</h3>
+      <p class='sans-regular'>
+        We improve business operations through process optimization, task
+        automation, effective resource management, and technology integration,
+        including project management, CRM systems, and data analysis tools.
+      </p>
+    </div>
+    <div>
+      <Icon
+        class='icon'
+        name='fa6-solid:chess-king'
+        width={56}
+        height={64}
+      />
+      <h3 class='sans-medium'>Strategy</h3>
+      <p class='sans-regular'>
+        We help businesses create strategic plans, set goals, and define steps
+        to achieve them. We also provide market research to track industry
+        trends, customer needs, and competition, and foster innovation to
+        improve products and services.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style lang='scss'>
+  @import '../styles/variables.scss';
+
+  section {
+    color: $dark;
+  }
+
+  h2 {
+    border-bottom: 0.15rem solid $neutral-dark;
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+
+    div {
+      text-align: center;
+    }
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      text-align: left;
+    }
+
+    .icon {
+      color: $primary;
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>
