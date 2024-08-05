@@ -46,6 +46,10 @@ const { title } = Astro.props;
     background: $white;
   }
 
+  section {
+    padding: 2rem 0;
+  }
+
   // Global
   .wrapper {
     margin-right: auto;
@@ -96,15 +100,15 @@ const { title } = Astro.props;
     font-size: 1.25rem;
   }
 
-  .sans-regular {
-    font-family: 'SourceSansRegular', sans-serif;
-    line-height: 2rem;
-    font-size: 1.25rem;
-  }
-
   .sans-medium {
     font-family: 'SourceSansMedium', sans-serif;
     line-height: 2rem;
     font-size: 1.5rem;
+  }
+
+  .sans-regular {
+    font-family: 'SourceSansRegular', sans-serif;
+    line-height: 1.75rem;
+    font-size: 1.12rem;
   }
 </style>
