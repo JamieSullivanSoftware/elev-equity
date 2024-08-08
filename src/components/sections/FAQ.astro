@@ -33,8 +33,10 @@ const questions: Question[] = [
         <h2 class='lf-semibold'>Get your answer</h2>
       </div>
       <div class='sans-regular'>
-        <p>Quick answers to questions you may have.</p>
-        <p>Can’t find what you’re looking for?</p>
+        <div>
+          <p>Quick answers to questions you may have.</p>
+          <p>Can’t find what you’re looking for?</p>
+        </div>
         <p>Get in touch with us below.</p>
       </div>
     </div>
@@ -45,23 +47,55 @@ const questions: Question[] = [
 </section>
 
 <style lang='scss'>
+  @import '../../styles/variables.scss';
+
   .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .left-section {
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 2rem;
 
     h2:first-child {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     div:last-child {
-      align-self: flex-end;
+      display: flex;
+      text-align: right;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+  }
 
-      p:first-child {
-        margin-bottom: 1rem;
+  // Above tablet
+  @media only screen and (min-width: $tablet) {
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .left-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-bottom: 0;
+
+      h2:first-child {
+        margin-bottom: 1.5rem;
+      }
+
+      div:last-child {
+        display: block;
+        align-self: flex-end;
+        text-align: left;
+
+        p:first-child {
+          margin-bottom: 1rem;
+        }
       }
     }
   }
