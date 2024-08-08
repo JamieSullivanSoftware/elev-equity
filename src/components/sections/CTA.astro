@@ -2,16 +2,18 @@
 import Button from '../common/Button.astro';
 ---
 
-<section class='wrapper'>
-  <span class='sans-medium'>
-    Grow your <strong><em>equity</em></strong> and make your business thrive</span
-  >
-  <div>
-    <Button
-      className='cta'
-      text='Contact Us'
-      variant='secondary'
-    />
+<section>
+  <div class='wrapper'>
+    <span class='sans-medium'>
+      Grow your <strong><em>equity</em></strong> and make your business thrive</span
+    >
+    <div class='btn-container'>
+      <Button
+        className='cta'
+        text='Contact Us'
+        variant='secondary'
+      />
+    </div>
   </div>
 </section>
 
@@ -21,28 +23,29 @@ import Button from '../common/Button.astro';
   section {
     background-color: $primary;
     color: $white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
-  div {
+  .btn-container {
     margin-top: 1.5rem;
   }
 
   // Above tablet
   @media only screen and (min-width: $tablet) {
-    section {
-      background-color: $primary;
-      color: $white;
+    section > div {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
     }
 
-    div {
+    .btn-container {
       margin-top: 0;
     }
   }
