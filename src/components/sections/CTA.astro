@@ -21,20 +21,29 @@ import Button from '../common/Button.astro';
   section {
     background-color: $primary;
     color: $white;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+  }
 
-    span {
-      grid-column-start: 1;
-      grid-column-end: 9;
-      justify-self: center;
+  div {
+    margin-top: 1.5rem;
+  }
+
+  // Above tablet
+  @media only screen and (min-width: $tablet) {
+    section {
+      background-color: $primary;
+      color: $white;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
     }
 
     div {
-      grid-column-start: 10;
-      grid-column-end: 12;
-      justify-self: center;
+      margin-top: 0;
     }
   }
 </style>
