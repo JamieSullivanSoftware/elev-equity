@@ -3,8 +3,8 @@ import { Icon } from 'astro-icon/components';
 import Input from '../common/Input.astro';
 ---
 
-<section class='wrapper'>
-  <div class='container'>
+<section>
+  <div class='wrapper container'>
     <div class='left-section'>
       <div>
         <h2 class='lf-semibold'>Contact Us</h2>
@@ -14,20 +14,22 @@ import Input from '../common/Input.astro';
             within 24 hours
           </p>
           <div class='contact'>
-            <Icon
-              name='material-symbols:phone-enabled'
-              width={24}
-              height={24}
-            />
-            <span>henrique@elevequity.com</span>
-          </div>
-          <div class='contact'>
-            <Icon
-              name='material-symbols:mail-rounded'
-              width={24}
-              height={24}
-            />
-            <span>henrique@elevequity.com</span>
+            <div class='info'>
+              <Icon
+                name='material-symbols:phone-enabled'
+                width={24}
+                height={24}
+              />
+              <span>henrique@elevequity.com</span>
+            </div>
+            <div class='info'>
+              <Icon
+                name='material-symbols:mail-rounded'
+                width={24}
+                height={24}
+              />
+              <span>henrique@elevequity.com</span>
+            </div>
           </div>
         </div>
       </div>
@@ -70,23 +72,69 @@ import Input from '../common/Input.astro';
 
   .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .left-section {
     display: grid;
 
     p {
-      margin: 2rem 0;
+      max-width: 32rem;
+      margin: 1rem 0;
     }
 
     .contact {
       display: flex;
-      align-items: center;
-      margin-top: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
 
-      span {
-        margin-left: 0.75rem;
+      div:first-child {
+        margin-right: 2rem;
+      }
+
+      .info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+
+        span {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+
+  // Above tablet
+  @media only screen and (min-width: $tablet) {
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .left-section {
+      display: grid;
+
+      p {
+        max-width: 20rem;
+        margin: 2rem 0;
+      }
+
+      .contact {
+        display: flex;
+        flex-direction: column;
+
+        .info {
+          display: flex;
+          align-items: center;
+
+          &:first-child {
+            margin-bottom: 1rem;
+          }
+
+          span {
+            margin-left: 0.75rem;
+          }
+        }
       }
     }
   }
