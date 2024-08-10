@@ -28,7 +28,7 @@ const questions: Question[] = [
 <section class='wrapper'>
   <div class='container'>
     <div class='left-section'>
-      <div>
+      <div class='headings'>
         <h2 class='lf-semibold'>Got a question?</h2>
         <h2 class='lf-semibold'>Get your answer</h2>
       </div>
@@ -56,19 +56,23 @@ const questions: Question[] = [
 
   .left-section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     margin-bottom: 2rem;
 
-    h2:first-child {
-      margin-bottom: 2rem;
+    .headings {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+
+      h2:first-child {
+        margin-right: 1rem;
+      }
     }
 
     div:last-child {
-      display: flex;
-      text-align: right;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: flex-end;
+      > div {
+        margin-bottom: 1rem;
+      }
     }
   }
 
@@ -84,17 +88,17 @@ const questions: Question[] = [
       grid-template-columns: 1fr;
       margin-bottom: 0;
 
-      h2:first-child {
-        margin-bottom: 1.5rem;
+      .headings {
+        display: flex;
+        flex-direction: column;
       }
 
       div:last-child {
         display: block;
         align-self: flex-end;
-        text-align: left;
 
-        p:first-child {
-          margin-bottom: 1rem;
+        p {
+          margin-top: 0;
         }
       }
     }
