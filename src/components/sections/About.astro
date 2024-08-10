@@ -1,34 +1,25 @@
----
-import { Image } from 'astro:assets';
-import henrique from '../../images/henrique.jpg';
----
-
-<section class='wrapper'>
-  <div class='container'>
-    <div class='info'>
-      <h2 class='lf-semibold'>Who We Are</h2>
-      <p class='sans-regular'>
-        Henrique, with a decade of experience in financial consulting, leads the
-        business with a deep understanding of strategic planning and market
-        analysis. His expertise spans budgeting, forecasting, financial
-        planning, and funding acquisition.
-      </p>
-      <p class='sans-regular'>
-        Adept at optimising business operations through process improvements,
-        task automation, and resource management. He also champions the use of
-        technology to enhance efficiency and fosters a culture of innovation,
-        helping businesses stay competitive by developing and improving products
-        and services. His comprehensive approach ensures clients are
-        well-equipped to navigate industry trends and achieve their goals.
-      </p>
+<section>
+  <div class='wrapper'>
+    <div class='container'>
+      <div class='info'>
+        <h2 class='lf-semibold'>Who We Are</h2>
+        <p class='sans-regular'>
+          Henrique, with a decade of experience in financial consulting, leads
+          the business with a deep understanding of strategic planning and
+          market analysis. His expertise spans budgeting, forecasting, financial
+          planning, and funding acquisition.
+        </p>
+        <p class='sans-regular'>
+          Adept at optimising business operations through process improvements,
+          task automation, and resource management. He also champions the use of
+          technology to enhance efficiency and fosters a culture of innovation,
+          helping businesses stay competitive by developing and improving
+          products and services. His comprehensive approach ensures clients are
+          well-equipped to navigate industry trends and achieve their goals.
+        </p>
+      </div>
+      <div class='image'></div>
     </div>
-    <Image
-      class='image'
-      src={henrique}
-      alt='Henrique'
-      width='318'
-      height='359'
-    />
   </div>
 </section>
 
@@ -48,7 +39,7 @@ import henrique from '../../images/henrique.jpg';
 
   .container {
     display: grid;
-    grid-template-columns: 7fr 3fr;
+    grid-template-columns: 1fr;
     align-items: center;
     grid-gap: 1.5rem;
 
@@ -57,9 +48,37 @@ import henrique from '../../images/henrique.jpg';
     }
 
     .image {
-      border-radius: 1rem;
-      justify-self: flex-end;
-      align-self: flex-end;
+      border-radius: 0.5rem;
+      width: 100%;
+      max-width: 41.5rem;
+      min-width: 20rem;
+      min-height: 20rem;
+      justify-self: center;
+      align-self: center;
+      background-image: url('../../images/henrique.jpg');
+      background-size: cover;
+      background-position: center;
+      background-clip: padding-box;
+    }
+  }
+
+  // Above tablet
+  @media only screen and (min-width: $tablet) {
+    .container {
+      display: grid;
+      grid-template-columns: 7fr 3fr;
+      align-items: center;
+      grid-gap: 2rem;
+
+      > :first-child p {
+        margin-bottom: 1rem;
+      }
+
+      .image {
+        border-radius: 1rem;
+        width: 20rem;
+        height: 18.75rem;
+      }
     }
   }
 </style>

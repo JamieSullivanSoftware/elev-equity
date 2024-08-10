@@ -12,10 +12,13 @@ interface Props {
 const { links } = Astro.props;
 ---
 
-<footer class='wrapper'>
-  <section>
+<footer>
+  <section class='wrapper'>
     <div class='top'>
-      <a href='#'>
+      <a
+        class='logo'
+        href='#'
+      >
         <Image
           src={logo}
           alt='Logo'
@@ -24,8 +27,8 @@ const { links } = Astro.props;
         />
       </a>
       <p class='sans-regular'>
-        Our primary goal of our is to empower companies to achieve sustainable
-        growth by providing expert financial consulting, strategic planning, and
+        Our primary goal is to empower companies to achieve sustainable growth
+        by providing expert financial consulting, strategic planning, and
         innovative solutions tailored to their unique needs.
       </p>
       <ul>
@@ -44,6 +47,9 @@ const { links } = Astro.props;
       </ul>
     </div>
   </section>
+  <div class='separator'>
+    <div class='line'></div>
+  </div>
   <div class='bottom'>
     <div class='social'>
       <a href=''>
@@ -87,38 +93,51 @@ const { links } = Astro.props;
     color: $white;
   }
 
-  section {
-    border-bottom: 0.125rem solid $white;
-  }
-
-  .container {
-  }
-
   .top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    justify-items: center;
+
+    .logo {
+      order: 3;
+    }
 
     p {
+      order: 2;
       max-width: 22rem;
     }
 
     ul {
+      order: 1;
       list-style: none;
-      text-align: right;
+      text-align: center;
 
       li:not(:last-child) {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
       }
     }
 
     a {
       color: $white;
       text-decoration: none;
-    }
 
-    a:hover {
-      color: color.scale($primary, $lightness: 75%);
+      &:hover {
+        color: color.scale($primary, $lightness: 75%);
+      }
+    }
+  }
+
+  .separator {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .line {
+      margin: 0 3rem;
+      max-width: 80rem;
+      width: 100%;
+      border-bottom: 0.125rem solid $white;
     }
   }
 
@@ -130,6 +149,10 @@ const { links } = Astro.props;
 
     a {
       color: $white;
+
+      &:hover {
+        color: color.scale($primary, $lightness: 75%);
+      }
     }
 
     .social {
@@ -147,6 +170,37 @@ const { links } = Astro.props;
 
       span:first-child {
         display: flex;
+      }
+    }
+  }
+
+  // Above tablet
+  @media only screen and (min-width: $tablet) {
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo {
+        order: 1;
+      }
+
+      p {
+        order: 2;
+      }
+
+      ul {
+        text-align: right;
+        order: 3;
+
+        li:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+      }
+
+      a {
+        color: $white;
+        text-decoration: none;
       }
     }
   }

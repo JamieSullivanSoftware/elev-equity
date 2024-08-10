@@ -28,13 +28,15 @@ const questions: Question[] = [
 <section class='wrapper'>
   <div class='container'>
     <div class='left-section'>
-      <div>
+      <div class='headings'>
         <h2 class='lf-semibold'>Got a question?</h2>
         <h2 class='lf-semibold'>Get your answer</h2>
       </div>
       <div class='sans-regular'>
-        <p>Quick answers to questions you may have.</p>
-        <p>Can’t find what you’re looking for?</p>
+        <div>
+          <p>Quick answers to questions you may have.</p>
+          <p>Can’t find what you’re looking for?</p>
+        </div>
         <p>Get in touch with us below.</p>
       </div>
     </div>
@@ -45,23 +47,59 @@ const questions: Question[] = [
 </section>
 
 <style lang='scss'>
+  @import '../../styles/variables.scss';
+
   .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .left-section {
     display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 2rem;
 
-    h2:first-child {
-      margin-bottom: 1.5rem;
+    .headings {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+
+      h2:first-child {
+        margin-right: 1.5rem;
+      }
     }
 
     div:last-child {
-      align-self: flex-end;
-
-      p:first-child {
+      > div {
         margin-bottom: 1rem;
+      }
+    }
+  }
+
+  // Above tablet
+  @media only screen and (min-width: $tablet) {
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .left-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-bottom: 0;
+
+      .headings {
+        display: flex;
+        flex-direction: column;
+      }
+
+      div:last-child {
+        display: block;
+        align-self: flex-end;
+
+        p {
+          margin-top: 0;
+        }
       }
     }
   }
