@@ -14,8 +14,12 @@ const { text, answer } = question;
 <div class='container sans-regular'>
   <div class='question'>
     <span>{`${index} .`}</span>
-    <span>{text}</span>
-    <button id={`button-${index}`}>
+    <p>{text}</p>
+    <button
+      id={`button-${index}`}
+      class='faq'
+      data-show='false'
+    >
       <Icon
         name='material-symbols:close'
         width={30}
@@ -41,6 +45,7 @@ const { text, answer } = question;
     margin-bottom: 2rem;
     padding: 1.25rem 1rem 0;
     position: relative;
+    border-radius: 0.25rem;
   }
 
   .question {
@@ -49,13 +54,26 @@ const { text, answer } = question;
     grid-gap: 0.5rem;
     align-items: center;
     margin-bottom: 1rem;
-    // padding: 1.25rem 1rem;
 
-    button:last-child {
-      display: flex;
-      justify-self: flex-end;
-      background: transparent;
-      border: 0;
+    button {
+      cursor: pointer;
+
+      &[data-show='false'] {
+        transition: rotate 0.2s ease;
+        rotate: 0deg;
+      }
+
+      &[data-show='true'] {
+        transition: rotate 0.2s ease;
+        rotate: -45deg;
+      }
+
+      &:last-child {
+        display: flex;
+        justify-self: flex-end;
+        background: transparent;
+        border: 0;
+      }
     }
   }
 
@@ -64,98 +82,55 @@ const { text, answer } = question;
   }
 
   .answer {
-    padding: 0 0 0 1.5rem;
-    // position: absolute;
-    // background-color: red;
-    // width: 100%;
-    // left: 0;
-    // top: 0;
-    // padding: 1.25rem 1rem;
+    padding-left: 1.5rem;
 
     &[data-show='false'] {
       height: 0;
-      // // transition: all 0.5s linear;
-      transition: all 0.5s;
-      // // transition-property: height, opacity;
+      transition: all 0.3s ease-in;
+      transition-property: height, padding;
       overflow: hidden;
-
-      // transform: scaleY(0);
-      // transform-origin: top;
-
-      // transform: translateY(0px);
-      // transition: transform 0.5s ease;
-
-      // opacity: 0;
-      // transition: opacity 0.5s linear;
-      // padding: 1.25rem 1rem;
-      // max-height: 0;
-      // transition: max-height 0.5s linear;
-      // transform: scaleY(0);
-      // transform-origin: top;
-      // transition: transform 0.8s ease;
-      // transition: transform 0.4s cubic-bezier(0.5, 0, 0.3, 1);
     }
 
     &[data-show='true'] {
-      // transform: translateY(40px);
-      overflow: hidden;
-      transition: all 0.5s;
       height: var(--openHeight);
-      padding-bottom: 1rem;
-
-      // max-height: auto;
-      // height: calc(100%);
-      // transition: all 0.5s linear;
-      // transition-property: height, opacity;
-      // opacity: 1;
-      // transition: opacity 0.5s linear;
-      // transform: scaleY(1);
-      // transition: 0.5s linear;
-      // padding: 1.25rem 1rem;
-      // transition: 0.5ms;
-      // transform: scale(1);
-    }
-  }
-
-  @keyframes animateToBottom {
-    from {
-      transform: translate3d(0, 0, 0);
-      opacity: 1;
-    }
-    to {
-      transform: translate3d(0, 10px, 0);
-      opacity: 0;
-    }
-  }
-
-  @media only screen and (min-width: $tablet) {
-    .question {
-      margin-bottom: 3rem;
+      transition: all 0.3s ease-out;
+      transition-property: height, padding;
+      overflow: hidden;
+      padding-bottom: 1.5rem;
     }
   }
 </style>
 
 <script>
-  const buttons = document.querySelectorAll('button');
+  const buttons = document.querySelectorAll('button.faq');
 
   buttons.forEach((button) => {
+    const id = button.id.split('-')[1];
+    const answerElement = document.getElementById(`answer-${id}`);
+    answerElement.style.setProperty(
+      '--openHeight',
+      answerElement.scrollHeight + 'px'
+    );
+
     button.addEventListener('click', () => {
-      const id = button.id.split('-')[1];
       openDropdown(id);
     });
   });
 
   const openDropdown = (id: string) => {
+    const buttonElement = document.getElementById(`button-${id}`);
     const answerElement = document.getElementById(`answer-${id}`);
-    console.log(answerElement.scrollHeight);
+
+    answerElement.style.setProperty(
+      '--openHeight',
+      answerElement.scrollHeight + 'px'
+    );
 
     if (answerElement.dataset.show === 'false') {
-      answerElement.style.setProperty(
-        '--openHeight',
-        answerElement.scrollHeight + 'px'
-      );
+      buttonElement.dataset.show = 'true';
       answerElement.dataset.show = 'true';
     } else {
+      buttonElement.dataset.show = 'false';
       answerElement.dataset.show = 'false';
     }
   };
