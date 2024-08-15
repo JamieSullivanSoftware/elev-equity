@@ -13,8 +13,10 @@ const { text, answer } = question;
 
 <div class='container sans-regular'>
   <div class='question'>
-    <span>{`${index} .`}</span>
-    <p>{text}</p>
+    <div>
+      <span>{`${index} .`}</span>
+      <p>{text}</p>
+    </div>
     <button
       id={`button-${index}`}
       class='faq'
@@ -49,23 +51,35 @@ const { text, answer } = question;
   }
 
   .question {
-    display: grid;
-    grid-template-columns: max-content max-content auto;
-    grid-gap: 0.5rem;
-    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 1rem;
+
+    div {
+      display: flex;
+
+      span {
+        min-width: max-content;
+        margin-right: 0.5rem;
+      }
+
+      p {
+        margin-right: 0.5rem;
+      }
+    }
 
     button {
       cursor: pointer;
 
       &[data-show='false'] {
         transition: rotate 0.2s ease;
-        rotate: 0deg;
+        rotate: -45deg;
       }
 
       &[data-show='true'] {
         transition: rotate 0.2s ease;
-        rotate: -45deg;
+        rotate: 0deg;
       }
 
       &:last-child {
@@ -75,10 +89,10 @@ const { text, answer } = question;
         border: 0;
       }
     }
-  }
 
-  .question:last-child {
-    margin-bottom: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .answer {
