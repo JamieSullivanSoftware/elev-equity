@@ -24,6 +24,7 @@ const { className, text, variant = 'primary', type = 'button' } = Astro.props;
   @import '../../styles/variables.scss';
 
   button {
+    width: 100%;
     border: none;
     cursor: pointer;
     outline: 0;
@@ -39,6 +40,7 @@ const { className, text, variant = 'primary', type = 'button' } = Astro.props;
   .btn {
     padding: 1.25rem 2rem;
     border-radius: 0.5rem;
+    min-width: max-content;
 
     &_primary {
       background-color: $primary;
@@ -80,6 +82,13 @@ const { className, text, variant = 'primary', type = 'button' } = Astro.props;
         -moz-box-shadow: $secondary-button-focus-shadow;
         box-shadow: $secondary-button-focus-shadow;
       }
+    }
+  }
+
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
+    .button {
+      width: max-content;
     }
   }
 </style>
