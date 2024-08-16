@@ -3,10 +3,8 @@ import { Image } from 'astro:assets';
 import logo from '../../images/logo.svg';
 import { Icon } from 'astro-icon/components';
 
-import type { Link } from '../../pages/index.astro';
-
 interface Props {
-  links: Link[];
+  links: string[];
 }
 
 const { links } = Astro.props;
@@ -32,13 +30,13 @@ const { links } = Astro.props;
 
     <ul>
       {
-        links.map((link: Link) => (
+        links.map((link: string) => (
           <li>
             <a
-              class='lf-medium'
-              href={link.href}
+              class='lf-medium nav-link'
+              href='#'
             >
-              {link.text}
+              {link}
             </a>
           </li>
         ))
@@ -93,3 +91,17 @@ const { links } = Astro.props;
     }
   }
 </style>
+
+<script>
+  const links = document.querySelectorAll('a.nav-link');
+
+  links.forEach((link: HTMLAnchorElement) => {
+    link.addEventListener('click', () => {
+      document
+        .getElementById(link.innerHTML.toLowerCase().trim())
+        .scrollIntoView({
+          behavior: 'smooth',
+        });
+    });
+  });
+</script>

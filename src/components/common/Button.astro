@@ -96,7 +96,7 @@ const { className, text, variant = 'primary', type = 'button' } = Astro.props;
 <script>
   const ctaButtons = document.querySelectorAll('button.cta');
 
-  ctaButtons.forEach((button) => {
+  ctaButtons.forEach((button: HTMLButtonElement) => {
     button.addEventListener('click', () => {
       console.log('CTA button was clicked!');
     });
