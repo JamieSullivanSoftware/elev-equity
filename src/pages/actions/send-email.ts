@@ -5,26 +5,33 @@ import type { APIRoute } from "astro";
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request, redirect }) => {
-  // Get the form data submitted by the user on the home page
   const formData = await request.formData();
-  const to = formData.get("recipient") as string | null;
-  const subject = formData.get("subject") as string | null;
+  const fullname = formData.get("fullname") as string | null;
+  const company = formData.get("company") as string | null;
+  const email = formData.get("email") as string | null;
   const message = formData.get("message") as string | null;
 
-  // Throw an error if we're missing any of the needed fields.
-  if (!to || !subject || !message) {
+  if (!fullname || !company || !email || !message) {
     throw new Error("Missing required fields");
   }
 
-  // Try to send the email using a `sendEmail` function we'll create next. Throw
-  // an error if it fails.
   try {
-    const html = `<div>${message}</div>`;
-    await sendEmail({ to, subject, html });
+    const html = `<div>
+      <h1>Message From: ${email}</h1>
+      <br/>
+      <h1>Company Name:${company}</h1>
+      <br/>
+      <p>${message}</p>
+    </div>`;
+
+    await sendEmail({
+      to: 'jamiesullivan523@gmail.com',
+      subject: `Inquiry from ${fullname}`,
+      html
+    });
   } catch (error) {
     throw new Error("Failed to send email");
   }
 
-  // Redirect the user to a success page after the email is sent.
-  return redirect("/");
+  return new Response('Email sent successfully', { status: 200 });
 };
