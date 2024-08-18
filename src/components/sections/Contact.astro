@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Input from '../common/Input.astro';
+import Button from '../common/Button.astro';
 ---
 
 <section id='contact'>
@@ -35,7 +36,10 @@ import Input from '../common/Input.astro';
       </div>
     </div>
     <div>
-      <form action=''>
+      <form
+        action='/actions/send-email'
+        method='post'
+      >
         <Input
           labelText='Full name'
           name='fullname'
@@ -57,6 +61,12 @@ import Input from '../common/Input.astro';
           value=''
           isTextarea
         />
+        <div class='btn-container'>
+          <Button
+            className='submit'
+            text='Submit'
+          />
+        </div>
       </form>
     </div>
   </div>
@@ -100,6 +110,26 @@ import Input from '../common/Input.astro';
         span {
           margin-left: 0.5rem;
         }
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .btn-container {
+      width: 100%;
+    }
+  }
+
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
+    form {
+      .btn-container {
+        align-self: flex-end;
+        width: max-content;
       }
     }
   }
