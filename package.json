@@ -13,9 +13,11 @@
     "@iconify-json/fa6-brands": "^1.1.22",
     "@iconify-json/fa6-solid": "^1.1.24",
     "@iconify-json/material-symbols": "^1.1.85",
+    "@types/ejs": "^3.1.5",
     "@types/nodemailer": "^6.4.15",
     "astro": "^4.11.5",
     "astro-icon": "^1.1.0",
+    "ejs": "^3.1.10",
     "nodemailer": "^6.9.14",
     "sass": "^1.77.8"
   }

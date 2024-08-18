@@ -16,18 +16,18 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
 
   try {
-    const html = `<div>
-      <h1>Message From: ${email}</h1>
-      <br/>
-      <h1>Company Name:${company}</h1>
-      <br/>
-      <p>${message}</p>
-    </div>`;
-
     await sendEmail({
       to: 'jamiesullivan523@gmail.com',
-      subject: `Inquiry from ${fullname}`,
-      html
+      subject: `Inquiry from ${fullname} at ${company}`,
+      template: {
+        name: "inquiry",
+        params: {
+          fullname,
+          company,
+          email,
+          message
+        }
+      }
     });
   } catch (error) {
     throw new Error("Failed to send email");
