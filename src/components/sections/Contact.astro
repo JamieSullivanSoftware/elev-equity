@@ -2,6 +2,60 @@
 import { Icon } from 'astro-icon/components';
 import Input from '../common/Input.astro';
 import Button from '../common/Button.astro';
+// import { sendEmail } from '../../utils/email';
+// console.log(Astro.request);
+// console.log('Astro.response');
+// console.log(Astro.response);
+// console.log(Astro.requeset.method);
+// if (Astro.request.method === 'POST') {
+//   try {
+//     const data = await Astro.request.formData();
+//     const name = data.get('username');
+//     const email = data.get('email');
+//     const password = data.get('password');
+//     // Do something with the data
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       console.error(error.message);
+//     }
+//   }
+// }
+
+// console.log('Astro.request');
+// console.log(Astro.request);
+
+// if (Astro.request.method === 'POST') {
+//   console.log('TWAS A POST');
+//   // const data = await Astro.request.formData();
+//   // const fullname = data.get('fullname') as string | null;
+//   // const company = data.get('company') as string | null;
+//   // const email = data.get('email') as string | null;
+//   // const message = data.get('message') as string | null;
+
+//   // try {
+//   //   await sendEmail({
+//   //     to: 'jamiesullivan523@gmail.com',
+//   //     subject: `Inquiry from ${fullname} at ${company}`,
+//   //     template: {
+//   //       name: 'inquiry',
+//   //       params: {
+//   //         fullname,
+//   //         company,
+//   //         email,
+//   //         message,
+//   //       },
+//   //     },
+//   //   });
+//   // } catch (error) {
+//   //   throw new Error('Failed to send email');
+//   // }
+// }
+
+// const cookies = Astro.cookies;
+// cookies.delete('fullname');
+// cookies.delete('company');
+// cookies.delete('email');
+// cookies.delete('message');
 ---
 
 <section id='contact'>
@@ -37,35 +91,85 @@ import Button from '../common/Button.astro';
     </div>
     <div>
       <form
-        action='/actions/send-email'
-        method='post'
+        id='contact-form'
+        method='POST'
       >
-        <Input
+        <div class='input'>
+          <label for='fullname'>Full name</label>
+          <input
+            autocomplete='off'
+            name='fullname'
+            aria-label='fullname'
+            value=''
+            placeholder='Full name'
+          />
+        </div>
+        <!-- <Input
           labelText='Full name'
           name='fullname'
           value=''
-        />
-        <Input
+        /> -->
+        <!-- {
+          cookies.get('fullname')?.value && (
+            <p>{cookies.get('fullname').value}</p>
+          )
+        } -->
+
+        <div class='input'>
+          <label for='company'>Company name</label>
+          <input
+            autocomplete='off'
+            name='company'
+            aria-label='company'
+            value=''
+            placeholder='Company name'
+          />
+        </div>
+        <!-- <Input
           labelText='Company name'
           name='company'
           value=''
-        />
-        <Input
+        /> -->
+        <!-- {cookies.get('company')?.value && <p>{cookies.get('company').value}</p>} -->
+
+        <div class='input'>
+          <label for='email'>Email address</label>
+          <input
+            autocomplete='off'
+            name='email'
+            aria-label='email'
+            value=''
+            placeholder='Email address'
+          />
+        </div>
+        <!-- <Input
           labelText='Email address'
           name='email'
           value=''
-        />
-        <Input
+        /> -->
+        <!-- {cookies.get('email')?.value && <p>{cookies.get('email').value}</p>} -->
+
+        <div class='input'>
+          <label for='message'>Your message</label>
+          <input
+            autocomplete='off'
+            name='message'
+            aria-label='message'
+            value=''
+            placeholder='Your message'
+          />
+        </div>
+        <!-- <Input
           labelText='Your message'
           name='message'
           value=''
           isTextarea
-        />
+        /> -->
+        <!-- {cookies.get('message')?.value && <p>{cookies.get('message').value}</p>} -->
         <div class='btn-container'>
           <Button
             className='submit'
             text='Submit'
-            type='submit'
           />
         </div>
       </form>
@@ -120,6 +224,45 @@ import Button from '../common/Button.astro';
     flex-direction: column;
     gap: 2rem;
 
+    .input {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        display: none;
+      }
+    }
+
+    input,
+    textarea {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border: 0.08rem solid $dark;
+      border-radius: 0.5rem;
+      padding: 1rem 0.75rem;
+
+      &::placeholder {
+        color: $neutral-dark;
+        font-style: italic;
+      }
+
+      &::-ms-input-placeholder {
+        color: $neutral-dark;
+        font-style: italic;
+      }
+
+      &:focus,
+      &:focus-visible,
+      &:active {
+        outline: $primary solid 0.1rem;
+        border-color: $primary;
+      }
+    }
+
+    textarea {
+      min-height: 12.5rem;
+    }
+
     .btn-container {
       width: 100%;
     }
@@ -170,3 +313,13 @@ import Button from '../common/Button.astro';
     }
   }
 </style>
+
+<script>
+  const form = document.getElementById('contact-form');
+
+  console.log(form);
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+  });
+</script>

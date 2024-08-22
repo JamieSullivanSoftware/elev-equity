@@ -4,15 +4,47 @@ import type { APIRoute } from "astro";
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const formData = await request.formData();
   const fullname = formData.get("fullname") as string | null;
   const company = formData.get("company") as string | null;
   const email = formData.get("email") as string | null;
   const message = formData.get("message") as string | null;
+  const errors = {
+    fullname: '',
+    company: '',
+    email: '',
+    message: ''
+  };
 
-  if (!fullname || !company || !email || !message) {
-    throw new Error("Missing required fields");
+  if (typeof fullname !== 'string' || fullname.length < 1) {
+    errors.fullname += 'Please enter your name.';
+  }
+  if (typeof company !== 'string' || company.length < 1) {
+    errors.company += 'Please enter your company name.';
+  }
+  if (typeof email !== 'string' || email.length < 6) {
+    errors.email += 'Please enter a valid email.';
+  }
+  if (typeof message !== 'string' || message.length < 3) {
+    errors.message += 'Please enter your message.';
+  }
+
+  const hasErrors = Object.values(errors).some((msg) => msg);
+
+  if (hasErrors) {
+    Object.entries(errors).forEach(([key, value]) => {
+      cookies.set(key, value, {
+        httpOnly: true,
+        sameSite: "strict",
+        path: "/",
+      });
+    })
+    return redirect("/");
+    return new Response(JSON.stringify({
+      message: "success",
+      status: 200,
+    }));
   }
 
   try {
@@ -33,5 +65,13 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     throw new Error("Failed to send email");
   }
 
-  return new Response('Email sent successfully', { status: 200 });
+  cookies.set("status", "Success!!!", {
+    httpOnly: true,
+    sameSite: "strict",
+    path: "/",
+  });
+
+  return redirect("/");
+
+  // return new Response('Email sent successfully', { status: 200 });
 };
