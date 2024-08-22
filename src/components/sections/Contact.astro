@@ -24,8 +24,9 @@ import Button from '../common/Button.astro';
 // console.log('Astro.request');
 // console.log(Astro.request);
 
-// if (Astro.request.method === 'POST') {
-//   console.log('TWAS A POST');
+if (Astro.request.method === 'POST') {
+  console.log('TWAS A POST');
+}
 //   // const data = await Astro.request.formData();
 //   // const fullname = data.get('fullname') as string | null;
 //   // const company = data.get('company') as string | null;
@@ -109,7 +110,6 @@ import Button from '../common/Button.astro';
             id='fullname-error'
             class='error'
           >
-            Full name is required
           </p>
         </div>
         <div class='input'>
@@ -126,7 +126,6 @@ import Button from '../common/Button.astro';
             id='company-error'
             class='error'
           >
-            Company name is required
           </p>
         </div>
         <div class='input'>
@@ -143,7 +142,6 @@ import Button from '../common/Button.astro';
             id='email-error'
             class='error'
           >
-            Email is required
           </p>
         </div>
         <div class='input'>
@@ -160,7 +158,6 @@ import Button from '../common/Button.astro';
             id='message-error'
             class='error'
           >
-            Message requires 10 characters
           </p>
         </div>
         <div class='btn-container'>
@@ -296,42 +293,67 @@ import Button from '../common/Button.astro';
   const form = document.getElementById('contact-form');
 
   form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
     const inputs = document.querySelectorAll('input');
+    const errors = {
+      fullname: '',
+      company: '',
+      email: '',
+      message: '',
+    };
 
     inputs.forEach((input: HTMLInputElement) => {
-      const error = document.getElementById(`${input.name}-error`);
+      if (input.name === 'fullname') {
+        if (!validateText(input, 1)) {
+          errors.fullname += 'Please enter your full name';
+        } else {
+          errors.fullname = '';
+        }
+      }
 
-      if (input.name === 'fullname' || input.name === 'company') {
-        validateText(input, 1);
+      if (input.name === 'company') {
+        if (!validateText(input, 1)) {
+          errors.company += 'Please enter your company name';
+        } else {
+          errors.company = '';
+        }
       }
 
       if (input.name === 'message') {
-        validateText(input, 9);
+        if (!validateText(input, 9)) {
+          errors.message += 'Message requires 10 characters';
+        } else {
+          errors.message = '';
+        }
       }
 
       if (input.name === 'email') {
-        const isValid = validateEmail(input.value);
         if (!input.value || input.value.length < 1) {
-          error.style.display = 'block';
-        } else if (!isValid) {
-          error.style.display = 'block';
-          error.innerHTML = 'Email is invalid';
+          errors.email += 'Please enter your email';
+        } else if (!validateEmail(input.value)) {
+          errors.email += 'Please enter a valid email';
         } else {
-          error.style.display = 'none';
+          errors.email = '';
         }
       }
     });
+
+    const hasErrors = Object.values(errors).some((msg) => msg);
+    if (hasErrors) {
+      e.preventDefault();
+      Object.entries(errors).forEach(([key, value]) => {
+        const error = document.getElementById(`${key}-error`);
+        error.innerHTML = value;
+        if (value.length > 0) {
+          error.style.display = 'block';
+        } else {
+          error.style.display = 'none';
+        }
+      });
+    }
   });
 
   const validateText = (input: HTMLInputElement, length: number) => {
-    const error = document.getElementById(`${input.name}-error`);
-    if (!input.value || input.value.length <= length) {
-      error.style.display = 'block';
-    } else {
-      error.style.display = 'none';
-    }
+    return input.value || input.value.length > length;
   };
 
   const validateEmail = (email: string) => {

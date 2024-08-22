@@ -37,13 +37,6 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const hasErrors = Object.values(errors).some((msg) => msg);
 
   if (hasErrors) {
-    Object.entries(errors).forEach(([key, value]) => {
-      cookies.set(key, value, {
-        httpOnly: true,
-        sameSite: "strict",
-        path: "/",
-      });
-    })
     return redirect("/");
     return new Response(JSON.stringify({
       message: "success",
