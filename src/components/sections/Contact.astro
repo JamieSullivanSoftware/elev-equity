@@ -89,10 +89,11 @@ import Button from '../common/Button.astro';
         </div>
       </div>
     </div>
-    <div>
+    <div class='sans-regular'>
       <form
         id='contact-form'
         method='POST'
+        action='/actions/send-email'
       >
         <div class='input'>
           <label for='fullname'>Full name</label>
@@ -102,7 +103,14 @@ import Button from '../common/Button.astro';
             aria-label='fullname'
             value=''
             placeholder='Full name'
+            type='text'
           />
+          <p
+            id='fullname-error'
+            class='error'
+          >
+            Full name is required
+          </p>
         </div>
         <div class='input'>
           <label for='company'>Company name</label>
@@ -112,7 +120,14 @@ import Button from '../common/Button.astro';
             aria-label='company'
             value=''
             placeholder='Company name'
+            type='text'
           />
+          <p
+            id='company-error'
+            class='error'
+          >
+            Company name is required
+          </p>
         </div>
         <div class='input'>
           <label for='email'>Email address</label>
@@ -122,7 +137,14 @@ import Button from '../common/Button.astro';
             aria-label='email'
             value=''
             placeholder='Email address'
+            type='text'
           />
+          <p
+            id='email-error'
+            class='error'
+          >
+            Email is required
+          </p>
         </div>
         <div class='input'>
           <label for='message'>Your message</label>
@@ -132,12 +154,20 @@ import Button from '../common/Button.astro';
             aria-label='message'
             value=''
             placeholder='Your message'
+            type='text'
           />
+          <p
+            id='message-error'
+            class='error'
+          >
+            Message requires 10 characters
+          </p>
         </div>
         <div class='btn-container'>
           <Button
             className='submit'
             text='Submit'
+            type='submit'
           />
         </div>
       </form>
@@ -201,38 +231,18 @@ import Button from '../common/Button.astro';
       }
     }
 
-    input,
-    textarea {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      border: 0.08rem solid $dark;
-      border-radius: 0.5rem;
-      padding: 1rem 0.75rem;
-
-      &::placeholder {
-        color: $neutral-dark;
-        font-style: italic;
-      }
-
-      &::-ms-input-placeholder {
-        color: $neutral-dark;
-        font-style: italic;
-      }
-
-      &:focus,
-      &:focus-visible,
-      &:active {
-        outline: $primary solid 0.1rem;
-        border-color: $primary;
-      }
-    }
-
     textarea {
       min-height: 12.5rem;
     }
 
     .btn-container {
       width: 100%;
+    }
+
+    .error {
+      display: none;
+      margin-top: 0.5rem;
+      color: rgb(187, 9, 9);
     }
   }
 
@@ -285,9 +295,48 @@ import Button from '../common/Button.astro';
 <script>
   const form = document.getElementById('contact-form');
 
-  console.log(form);
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    const inputs = document.querySelectorAll('input');
+
+    inputs.forEach((input: HTMLInputElement) => {
+      const error = document.getElementById(`${input.name}-error`);
+
+      if (input.name === 'fullname' || input.name === 'company') {
+        validateText(input, 1);
+      }
+
+      if (input.name === 'message') {
+        validateText(input, 9);
+      }
+
+      if (input.name === 'email') {
+        const isValid = validateEmail(input.value);
+        if (!input.value || input.value.length < 1) {
+          error.style.display = 'block';
+        } else if (!isValid) {
+          error.style.display = 'block';
+          error.innerHTML = 'Email is invalid';
+        } else {
+          error.style.display = 'none';
+        }
+      }
+    });
   });
+
+  const validateText = (input: HTMLInputElement, length: number) => {
+    const error = document.getElementById(`${input.name}-error`);
+    if (!input.value || input.value.length <= length) {
+      error.style.display = 'block';
+    } else {
+      error.style.display = 'none';
+    }
+  };
+
+  const validateEmail = (email: string) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
 </script>

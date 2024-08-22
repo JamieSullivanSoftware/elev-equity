@@ -17,16 +17,20 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
     message: ''
   };
 
-  if (typeof fullname !== 'string' || fullname.length < 1) {
+  if (typeof fullname !== 'string' || fullname.length <= 1) {
     errors.fullname += 'Please enter your name.';
   }
-  if (typeof company !== 'string' || company.length < 1) {
+  if (typeof company !== 'string' || company.length <= 1) {
     errors.company += 'Please enter your company name.';
   }
-  if (typeof email !== 'string' || email.length < 6) {
+  if (
+    typeof email !== 'string' ||
+    email.length <= 1 ||
+    !validateEmail(email)
+  ) {
     errors.email += 'Please enter a valid email.';
   }
-  if (typeof message !== 'string' || message.length < 3) {
+  if (typeof message !== 'string' || message.length <= 9) {
     errors.message += 'Please enter your message.';
   }
 
@@ -74,4 +78,10 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   return redirect("/");
 
   // return new Response('Email sent successfully', { status: 200 });
+};
+
+const validateEmail = (email: string) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
 };
