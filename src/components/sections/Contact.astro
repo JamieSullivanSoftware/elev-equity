@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Input from '../common/Input.astro';
+
 import Button from '../common/Button.astro';
 // import { sendEmail } from '../../utils/email';
 // console.log(Astro.request);
@@ -104,17 +104,6 @@ import Button from '../common/Button.astro';
             placeholder='Full name'
           />
         </div>
-        <!-- <Input
-          labelText='Full name'
-          name='fullname'
-          value=''
-        /> -->
-        <!-- {
-          cookies.get('fullname')?.value && (
-            <p>{cookies.get('fullname').value}</p>
-          )
-        } -->
-
         <div class='input'>
           <label for='company'>Company name</label>
           <input
@@ -125,13 +114,6 @@ import Button from '../common/Button.astro';
             placeholder='Company name'
           />
         </div>
-        <!-- <Input
-          labelText='Company name'
-          name='company'
-          value=''
-        /> -->
-        <!-- {cookies.get('company')?.value && <p>{cookies.get('company').value}</p>} -->
-
         <div class='input'>
           <label for='email'>Email address</label>
           <input
@@ -142,13 +124,6 @@ import Button from '../common/Button.astro';
             placeholder='Email address'
           />
         </div>
-        <!-- <Input
-          labelText='Email address'
-          name='email'
-          value=''
-        /> -->
-        <!-- {cookies.get('email')?.value && <p>{cookies.get('email').value}</p>} -->
-
         <div class='input'>
           <label for='message'>Your message</label>
           <input
@@ -159,13 +134,6 @@ import Button from '../common/Button.astro';
             placeholder='Your message'
           />
         </div>
-        <!-- <Input
-          labelText='Your message'
-          name='message'
-          value=''
-          isTextarea
-        /> -->
-        <!-- {cookies.get('message')?.value && <p>{cookies.get('message').value}</p>} -->
         <div class='btn-container'>
           <Button
             className='submit'
