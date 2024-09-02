@@ -2,61 +2,14 @@
 import { Icon } from 'astro-icon/components';
 
 import Button from '../common/Button.astro';
-// import { sendEmail } from '../../utils/email';
-// console.log(Astro.request);
-// console.log('Astro.response');
-// console.log(Astro.response);
-// console.log(Astro.requeset.method);
-// if (Astro.request.method === 'POST') {
-//   try {
-//     const data = await Astro.request.formData();
-//     const name = data.get('username');
-//     const email = data.get('email');
-//     const password = data.get('password');
-//     // Do something with the data
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       console.error(error.message);
-//     }
-//   }
-// }
 
-// console.log('Astro.request');
-// console.log(Astro.request);
-
-if (Astro.request.method === 'POST') {
-  console.log('TWAS A POST');
+const cookies = Astro.cookies;
+const status = (cookies.get('status') || {})?.value;
+console.log('status');
+console.log(status);
+if (status) {
+  cookies.delete('status');
 }
-//   // const data = await Astro.request.formData();
-//   // const fullname = data.get('fullname') as string | null;
-//   // const company = data.get('company') as string | null;
-//   // const email = data.get('email') as string | null;
-//   // const message = data.get('message') as string | null;
-
-//   // try {
-//   //   await sendEmail({
-//   //     to: 'jamiesullivan523@gmail.com',
-//   //     subject: `Inquiry from ${fullname} at ${company}`,
-//   //     template: {
-//   //       name: 'inquiry',
-//   //       params: {
-//   //         fullname,
-//   //         company,
-//   //         email,
-//   //         message,
-//   //       },
-//   //     },
-//   //   });
-//   // } catch (error) {
-//   //   throw new Error('Failed to send email');
-//   // }
-// }
-
-// const cookies = Astro.cookies;
-// cookies.delete('fullname');
-// cookies.delete('company');
-// cookies.delete('email');
-// cookies.delete('message');
 ---
 
 <section id='contact'>

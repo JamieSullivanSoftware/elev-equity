@@ -20,9 +20,11 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   if (typeof fullname !== 'string' || fullname.length <= 1) {
     errors.fullname += 'Please enter your name.';
   }
+
   if (typeof company !== 'string' || company.length <= 1) {
     errors.company += 'Please enter your company name.';
   }
+
   if (
     typeof email !== 'string' ||
     email.length <= 1 ||
@@ -30,6 +32,7 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   ) {
     errors.email += 'Please enter a valid email.';
   }
+
   if (typeof message !== 'string' || message.length <= 9) {
     errors.message += 'Please enter your message.';
   }
@@ -37,11 +40,14 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const hasErrors = Object.values(errors).some((msg) => msg);
 
   if (hasErrors) {
+
+    cookies.set("status", "Something went wrong", {
+      httpOnly: true,
+      sameSite: "strict",
+      path: "/",
+    });
+
     return redirect("/");
-    return new Response(JSON.stringify({
-      message: "success",
-      status: 200,
-    }));
   }
 
   try {
@@ -62,15 +68,13 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
     throw new Error("Failed to send email");
   }
 
-  cookies.set("status", "Success!!!", {
+  cookies.set("status", "Email sent successfully", {
     httpOnly: true,
     sameSite: "strict",
     path: "/",
   });
 
   return redirect("/");
-
-  // return new Response('Email sent successfully', { status: 200 });
 };
 
 const validateEmail = (email: string) => {
