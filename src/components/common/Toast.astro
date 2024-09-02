@@ -1,0 +1,27 @@
+---
+interface Props {
+  message: string;
+}
+
+const { message } = Astro.props;
+---
+
+<div class='toast'>
+  <p class='sans-regular'>
+    {message}
+  </p>
+</div>
+
+<style lang='scss'>
+  @import '../../styles/variables.scss';
+
+  .toast {
+    position: absolute;
+    z-index: 5;
+    background-color: $white;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    top: 6rem;
+    right: 4rem;
+  }
+</style>

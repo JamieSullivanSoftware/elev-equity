@@ -2,14 +2,6 @@
 import { Icon } from 'astro-icon/components';
 
 import Button from '../common/Button.astro';
-
-const cookies = Astro.cookies;
-const status = (cookies.get('status') || {})?.value;
-console.log('status');
-console.log(status);
-if (status) {
-  cookies.delete('status');
-}
 ---
 
 <section id='contact'>
