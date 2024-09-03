@@ -25,7 +25,10 @@ if (status) {
 <Layout title='Elev Equity'>
   <main>
     <!-- {status && <Toast message={'Email sent'} />} -->
-    <Toast message={'Email sent'} />
+    <Toast
+      status={200}
+      message={'Email sent'}
+    />
     <Nav links={links} />
     <Hero />
     <Services />

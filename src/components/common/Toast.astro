@@ -1,12 +1,18 @@
 ---
 interface Props {
+  status: number;
   message: string;
 }
 
-const { message } = Astro.props;
+const { status, message } = Astro.props;
+console.log('status');
+console.log(status);
 ---
 
-<div class='toast'>
+<div
+  id='toast'
+  class={status === 200 ? 'success' : 'error'}
+>
   <p class='sans-regular'>
     {message}
   </p>
@@ -15,13 +21,113 @@ const { message } = Astro.props;
 <style lang='scss'>
   @import '../../styles/variables.scss';
 
-  .toast {
+  $right: 3.5rem;
+
+  #toast {
     position: absolute;
     z-index: 5;
     background-color: $white;
     border-radius: 0.25rem;
     padding: 0.5rem 1rem;
-    top: 6rem;
-    right: 4rem;
+    top: 6.5rem;
+    right: $right;
+    visibility: hidden;
+    // opacity: 1;
+
+    // -webkit-animation:
+    //   fadein 2s,
+    //   fadeout 2s 2.5s;
+    // animation:
+    //   fadein 2s,
+    //   fadeout 2s 2.5s;
   }
+
+  #toast.show {
+    visibility: visible;
+    animation:
+      fadein 0.5s,
+      fadeout 0.5s 2s;
+  }
+
+  #toast.success {
+    // box-shadow: 0 0px 2px 5px green inset;
+    // box-shadow: inset 10px -10px 5px #222;
+    box-shadow: inset 14px 0 0px -8px red;
+  }
+
+  @keyframes fadein {
+    from {
+      right: 0;
+      opacity: 0;
+    }
+    to {
+      right: $right;
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      right: $right;
+      // right: 0;
+      opacity: 1;
+    }
+    to {
+      right: $right;
+      // right: 0;
+      opacity: 0;
+    }
+  }
+
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  // #snackbar.show {
+  //   visibility: visible; /* Show the snackbar */
+  //   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  // However, delay the fade out process for 2.5 seconds */
+  //   // -webkit-animation:
+  //   //   fadein 1s,
+  //   //   fadeout 1s 2s;
+  //   animation:
+  //     fadein 1s,
+  //     fadeout 2s 2s;
+  // }
+
+  /* Animations to fade the snackbar in and out */
+  // @-webkit-keyframes fadein {
+  //   from {
+  //     right: 0;
+  //     opacity: 0;
+  //   }
+  //   to {
+  //     right: 4rem;
+  //     opacity: 1;
+  //   }
+  // }
+
+  // @-webkit-keyframes fadeout {
+  //   from {
+  //     // right: 0;
+  //     // right: 4rem;
+  //     opacity: 1;
+  //   }
+  //   to {
+  //     // right: 0;
+  //     // right: 4rem;
+  //     opacity: 0;
+  //   }
+  // }
 </style>
+
+<script>
+  // Get the snackbar DIV
+  const toast = document.getElementById('toast');
+  console.log(toast);
+
+  // Add the "show" class to DIV
+  toast.classList.add('show');
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function () {
+    // toast.classList.remove('show');
+  }, 2500);
+</script>
