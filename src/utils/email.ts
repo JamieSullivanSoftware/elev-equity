@@ -1,5 +1,4 @@
 import { createTransport, type Transporter } from "nodemailer";
-import ejs from "ejs";
 import fs from "fs";
 
 type TemplateParams = {
@@ -15,15 +14,14 @@ type TemplateParams = {
 type SendEmailOptions = {
   to: string;
   subject: string;
-  template: TemplateParams;
+  html: string;
 };
 
 export async function sendEmail(options: SendEmailOptions): Promise<Transporter> {
 
   const transporter = await getEmailTransporter();
   return new Promise(async (resolve, reject) => {
-    const { to, subject, template } = options;
-    const html = await parseEmailTemplate(template.name, template.params);
+    const { to, subject, html } = options;
     const from = import.meta.env.SEND_EMAIL_FROM;
     const message = { to, subject, html, from };
 
@@ -53,9 +51,4 @@ async function getEmailTransporter(): Promise<Transporter> {
     });
     resolve(transporter);
   });
-}
-
-async function parseEmailTemplate(name: TemplateParams["name"], params: TemplateParams["params"]): Promise<string> {
-  const rawTemplate = fs.readFileSync(`./src/utils/templates/${name}.ejs`, "utf8");
-  return ejs.render(rawTemplate, params);
-}
+};
