@@ -285,7 +285,7 @@ import Button from '../common/Button.astro';
     const hasErrors = Object.values(errors).some((msg) => msg);
     if (hasErrors) {
       e.preventDefault();
-      Object.entries(errors).forEach(([key, value]) => {
+      Object.entries(errors).forEach(([key, value]: string[]) => {
         const error = document.getElementById(`${key}-error`);
         error.innerHTML = value;
         if (value.length > 0) {
@@ -294,11 +294,16 @@ import Button from '../common/Button.astro';
           error.style.display = 'none';
         }
       });
+    } else {
+      Object.keys(errors).forEach((key: string) => {
+        const error = document.getElementById(`${key}-error`);
+        error.style.display = 'none';
+      });
     }
   });
 
   const validateText = (input: HTMLInputElement, length: number) => {
-    return input.value || input.value.length > length;
+    return input.value.length > length;
   };
 
   const validateEmail = (email: string) => {

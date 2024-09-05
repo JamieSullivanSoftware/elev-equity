@@ -40,8 +40,9 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const hasErrors = Object.values(errors).some((msg) => msg);
 
   if (hasErrors) {
+    console.log(errors);
 
-    cookies.set("status", "Something went wrong", {
+    cookies.set("status", "400", {
       httpOnly: true,
       sameSite: "strict",
       path: "/",
@@ -68,7 +69,7 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
     throw new Error("Failed to send email");
   }
 
-  cookies.set("status", "Email sent successfully", {
+  cookies.set("status", "200", {
     httpOnly: true,
     sameSite: "strict",
     path: "/",

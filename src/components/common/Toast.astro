@@ -1,17 +1,20 @@
 ---
 interface Props {
-  status: number;
-  message: string;
+  status: string;
 }
 
-const { status, message } = Astro.props;
-console.log('status');
-console.log(status);
+const { status } = Astro.props;
+let message;
+
+if (status) {
+  message =
+    status === '200' ? 'Email sent successfully' : 'Email failed to send';
+}
 ---
 
 <div
   id='toast'
-  class={status === 200 ? 'success' : 'error'}
+  class={status === '200' ? 'success' : 'error'}
 >
   <p class='sans-regular'>
     {message}
@@ -32,32 +35,29 @@ console.log(status);
     top: 6.5rem;
     right: $right;
     visibility: hidden;
-    // opacity: 1;
-
-    // -webkit-animation:
-    //   fadein 2s,
-    //   fadeout 2s 2.5s;
-    // animation:
-    //   fadein 2s,
-    //   fadeout 2s 2.5s;
   }
 
   #toast.show {
     visibility: visible;
     animation:
       fadein 0.5s,
-      fadeout 0.5s 2s;
+      fadeout 0.5s 2.5s;
+    -webkit-animation:
+      fadein 0.5s,
+      fadeout 0.5s 2.5s;
   }
 
   #toast.success {
-    // box-shadow: 0 0px 2px 5px green inset;
-    // box-shadow: inset 10px -10px 5px #222;
-    box-shadow: inset 14px 0 0px -8px red;
+    box-shadow: inset 1.25rem 0 0px -1rem #0cae3a;
+  }
+
+  #toast.error {
+    box-shadow: inset 1.25rem 0 0px -1rem #d51616;
   }
 
   @keyframes fadein {
     from {
-      right: 0;
+      right: -8rem;
       opacity: 0;
     }
     to {
@@ -68,66 +68,38 @@ console.log(status);
 
   @keyframes fadeout {
     from {
-      right: $right;
-      // right: 0;
       opacity: 1;
     }
     to {
-      right: $right;
-      // right: 0;
       opacity: 0;
     }
   }
 
-  /* Show the snackbar when clicking on a button (class added with JavaScript) */
-  // #snackbar.show {
-  //   visibility: visible; /* Show the snackbar */
-  //   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-  // However, delay the fade out process for 2.5 seconds */
-  //   // -webkit-animation:
-  //   //   fadein 1s,
-  //   //   fadeout 1s 2s;
-  //   animation:
-  //     fadein 1s,
-  //     fadeout 2s 2s;
-  // }
+  @-webkit-keyframes fadein {
+    from {
+      right: -8rem;
+      opacity: 0;
+    }
+    to {
+      right: $right;
+      opacity: 1;
+    }
+  }
 
-  /* Animations to fade the snackbar in and out */
-  // @-webkit-keyframes fadein {
-  //   from {
-  //     right: 0;
-  //     opacity: 0;
-  //   }
-  //   to {
-  //     right: 4rem;
-  //     opacity: 1;
-  //   }
-  // }
-
-  // @-webkit-keyframes fadeout {
-  //   from {
-  //     // right: 0;
-  //     // right: 4rem;
-  //     opacity: 1;
-  //   }
-  //   to {
-  //     // right: 0;
-  //     // right: 4rem;
-  //     opacity: 0;
-  //   }
-  // }
+  @-webkit-keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 </style>
 
 <script>
-  // Get the snackbar DIV
   const toast = document.getElementById('toast');
-  console.log(toast);
-
-  // Add the "show" class to DIV
   toast.classList.add('show');
-
-  // After 3 seconds, remove the show class from DIV
   setTimeout(function () {
-    // toast.classList.remove('show');
-  }, 2500);
+    toast.classList.remove('show');
+  }, 3000);
 </script>

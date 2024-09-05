@@ -15,20 +15,17 @@ const links = ['Services', 'About', 'Process', 'FAQ', 'Contact'];
 
 const cookies = Astro.cookies;
 const status = (cookies.get('status') || {})?.value;
-console.log('status');
-console.log(status);
+let msg;
+
 if (status) {
+  msg = status === '200' ? 'Email sent successfully' : 'Email failed to send';
   cookies.delete('status');
 }
 ---
 
 <Layout title='Elev Equity'>
   <main>
-    <!-- {status && <Toast message={'Email sent'} />} -->
-    <Toast
-      status={200}
-      message={'Email sent'}
-    />
+    {status && <Toast status={status} />}
     <Nav links={links} />
     <Hero />
     <Services />
