@@ -1,0 +1,99 @@
+---
+interface Props {
+  status: string;
+}
+
+const { status } = Astro.props;
+---
+
+<div
+  id='toast'
+  class={status === '200' ? 'success' : 'error'}
+>
+  <p class='sans-regular'>
+    {status === '200' ? 'Email sent successfully' : 'Email failed to send'}
+  </p>
+</div>
+
+<style lang='scss'>
+  @import '../../styles/variables.scss';
+
+  $right: 3.5rem;
+
+  #toast {
+    position: absolute;
+    z-index: 5;
+    background-color: $white;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    top: 6.5rem;
+    right: $right;
+    visibility: hidden;
+  }
+
+  #toast.show {
+    visibility: visible;
+    animation:
+      fadein 0.5s,
+      fadeout 0.5s 2.5s;
+    -webkit-animation:
+      fadein 0.5s,
+      fadeout 0.5s 2.5s;
+  }
+
+  #toast.success {
+    box-shadow: inset 1.25rem 0 0px -1rem $success;
+  }
+
+  #toast.error {
+    box-shadow: inset 1.25rem 0 0px -1rem $error;
+  }
+
+  @keyframes fadein {
+    from {
+      right: -8rem;
+      opacity: 0;
+    }
+    to {
+      right: $right;
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @-webkit-keyframes fadein {
+    from {
+      right: -8rem;
+      opacity: 0;
+    }
+    to {
+      right: $right;
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(function () {
+    toast.classList.remove('show');
+  }, 3000);
+</script>

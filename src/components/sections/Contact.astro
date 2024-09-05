@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
-import Input from '../common/Input.astro';
+
+import Button from '../common/Button.astro';
 ---
 
 <section id='contact'>
@@ -34,29 +35,83 @@ import Input from '../common/Input.astro';
         </div>
       </div>
     </div>
-    <div>
-      <form action=''>
-        <Input
-          labelText='Full name'
-          name='fullname'
-          value=''
-        />
-        <Input
-          labelText='Company name'
-          name='company'
-          value=''
-        />
-        <Input
-          labelText='Email address'
-          name='email'
-          value=''
-        />
-        <Input
-          labelText='Your message'
-          name='message'
-          value=''
-          isTextarea
-        />
+    <div class='sans-regular'>
+      <form
+        id='contact-form'
+        method='POST'
+        action='/actions/send-email'
+      >
+        <div class='input'>
+          <label for='fullname'>Full name</label>
+          <input
+            autocomplete='off'
+            name='fullname'
+            aria-label='fullname'
+            value=''
+            placeholder='Full name'
+            type='text'
+          />
+          <p
+            id='fullname-error'
+            class='error'
+          >
+          </p>
+        </div>
+        <div class='input'>
+          <label for='company'>Company name</label>
+          <input
+            autocomplete='off'
+            name='company'
+            aria-label='company'
+            value=''
+            placeholder='Company name'
+            type='text'
+          />
+          <p
+            id='company-error'
+            class='error'
+          >
+          </p>
+        </div>
+        <div class='input'>
+          <label for='email'>Email address</label>
+          <input
+            autocomplete='off'
+            name='email'
+            aria-label='email'
+            value=''
+            placeholder='Email address'
+            type='text'
+          />
+          <p
+            id='email-error'
+            class='error'
+          >
+          </p>
+        </div>
+        <div class='input'>
+          <label for='message'>Your message</label>
+          <input
+            autocomplete='off'
+            name='message'
+            aria-label='message'
+            value=''
+            placeholder='Your message'
+            type='text'
+          />
+          <p
+            id='message-error'
+            class='error'
+          >
+          </p>
+        </div>
+        <div class='btn-container'>
+          <Button
+            className='submit'
+            text='Send'
+            type='submit'
+          />
+        </div>
       </form>
     </div>
   </div>
@@ -104,6 +159,45 @@ import Input from '../common/Input.astro';
     }
   }
 
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .input {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        display: none;
+      }
+    }
+
+    textarea {
+      min-height: 12.5rem;
+    }
+
+    .btn-container {
+      width: 100%;
+    }
+
+    .error {
+      display: none;
+      margin-top: 0.5rem;
+      color: $error;
+    }
+  }
+
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
+    form {
+      .btn-container {
+        align-self: flex-end;
+        width: max-content;
+      }
+    }
+  }
+
   // Above tablet
   @media only screen and (min-width: $tablet) {
     .container {
@@ -139,3 +233,82 @@ import Input from '../common/Input.astro';
     }
   }
 </style>
+
+<script>
+  const form = document.getElementById('contact-form');
+
+  form.addEventListener('submit', (e) => {
+    const inputs = document.querySelectorAll('input');
+    const errors = {
+      fullname: '',
+      company: '',
+      email: '',
+      message: '',
+    };
+
+    inputs.forEach((input: HTMLInputElement) => {
+      if (input.name === 'fullname') {
+        if (!validateText(input, 1)) {
+          errors.fullname += 'Please enter your full name';
+        } else {
+          errors.fullname = '';
+        }
+      }
+
+      if (input.name === 'company') {
+        if (!validateText(input, 1)) {
+          errors.company += 'Please enter your company name';
+        } else {
+          errors.company = '';
+        }
+      }
+
+      if (input.name === 'message') {
+        if (!validateText(input, 9)) {
+          errors.message += 'Message requires 10 characters';
+        } else {
+          errors.message = '';
+        }
+      }
+
+      if (input.name === 'email') {
+        if (!input.value || input.value.length < 1) {
+          errors.email += 'Please enter your email';
+        } else if (!validateEmail(input.value)) {
+          errors.email += 'Please enter a valid email';
+        } else {
+          errors.email = '';
+        }
+      }
+    });
+
+    const hasErrors = Object.values(errors).some((msg) => msg);
+    if (hasErrors) {
+      e.preventDefault();
+      Object.entries(errors).forEach(([key, value]: string[]) => {
+        const error = document.getElementById(`${key}-error`);
+        error.innerHTML = value;
+        if (value.length > 0) {
+          error.style.display = 'block';
+        } else {
+          error.style.display = 'none';
+        }
+      });
+    } else {
+      Object.keys(errors).forEach((key: string) => {
+        const error = document.getElementById(`${key}-error`);
+        error.style.display = 'none';
+      });
+    }
+  });
+
+  const validateText = (input: HTMLInputElement, length: number) => {
+    return input.value.length > length;
+  };
+
+  const validateEmail = (email: string) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+</script>

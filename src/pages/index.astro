@@ -9,12 +9,21 @@ import Process from '../components/sections/Process.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import Contact from '../components/sections/Contact.astro';
 import Footer from '../components/sections/Footer.astro';
+import Toast from '../components/common/Toast.astro';
 
 const links = ['Services', 'About', 'Process', 'FAQ', 'Contact'];
+
+const cookies = Astro.cookies;
+const status = (cookies.get('status') || {})?.value;
+
+if (status) {
+  cookies.delete('status');
+}
 ---
 
 <Layout title='Elev Equity'>
   <main>
+    {status && <Toast status={status} />}
     <Nav links={links} />
     <Hero />
     <Services />
