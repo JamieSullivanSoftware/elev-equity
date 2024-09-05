@@ -95,10 +95,18 @@ const { className, text, variant = 'primary', type = 'button' } = Astro.props;
 
 <script>
   const ctaButtons = document.querySelectorAll('button.cta');
-
   ctaButtons.forEach((button: HTMLButtonElement) => {
     button.addEventListener('click', () => {
-      console.log('CTA button was clicked!');
+      const form = document.getElementById('contact-form') as HTMLFormElement;
+      const input = form.elements[0] as HTMLInputElement;
+      if (input) {
+        document.getElementById('contact').scrollIntoView({
+          behavior: 'smooth',
+        });
+        setTimeout(function () {
+          input.focus();
+        }, 500);
+      }
     });
   });
 </script>

@@ -92,8 +92,10 @@ const { status } = Astro.props;
 
 <script>
   const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  setTimeout(function () {
-    toast.classList.remove('show');
-  }, 3000);
+  if (toast) {
+    toast.classList.add('show');
+    setTimeout(function () {
+      toast.classList.remove('show');
+    }, 3000);
+  }
 </script>
