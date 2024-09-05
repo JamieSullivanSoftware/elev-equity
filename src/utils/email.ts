@@ -1,15 +1,4 @@
 import { createTransport, type Transporter } from "nodemailer";
-import fs from "fs";
-
-type TemplateParams = {
-  name: "inquiry";
-  params: {
-    fullname: string,
-    company: string,
-    email: string,
-    message: string
-  }
-};
 
 type SendEmailOptions = {
   to: string;

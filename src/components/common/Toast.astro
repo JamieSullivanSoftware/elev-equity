@@ -4,12 +4,6 @@ interface Props {
 }
 
 const { status } = Astro.props;
-let message;
-
-if (status) {
-  message =
-    status === '200' ? 'Email sent successfully' : 'Email failed to send';
-}
 ---
 
 <div
@@ -17,7 +11,7 @@ if (status) {
   class={status === '200' ? 'success' : 'error'}
 >
   <p class='sans-regular'>
-    {message}
+    {status === '200' ? 'Email sent successfully' : 'Email failed to send'}
   </p>
 </div>
 
