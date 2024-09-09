@@ -14,6 +14,7 @@
     "@iconify-json/fa6-solid": "^1.1.24",
     "@iconify-json/material-symbols": "^1.1.85",
     "@types/nodemailer": "^6.4.15",
+    "@vercel/speed-insights": "^1.0.12",
     "astro": "^4.11.5",
     "astro-icon": "^1.1.0",
     "nodemailer": "^6.9.14",
