@@ -1,51 +1,176 @@
 ---
+import SpeedInsights from '@vercel/speed-insights/astro';
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta
+      name='description'
+      content='Astro description'
+    />
+    <meta
+      name='viewport'
+      content='width=device-width'
+    />
+    <link
+      rel='icon'
+      type='image/svg+xml'
+      href='/favicon.svg'
+    />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <SpeedInsights />
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+<style is:global lang='scss'>
+  @import '../styles/variables.scss';
+
+  // Overrides
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    background: $white;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  section {
+    padding: 2rem 0;
+  }
+
+  // Global
+  input,
+  textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0.08rem solid $dark;
+    border-radius: 0.5rem;
+    padding: 1rem 0.75rem;
+
+    &::placeholder {
+      color: $neutral-dark;
+      font-style: italic;
+    }
+
+    &::-ms-input-placeholder {
+      color: $neutral-dark;
+      font-style: italic;
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+      outline: $primary solid 0.1rem;
+      border-color: $primary;
+    }
+  }
+
+  .wrapper {
+    margin: 0 auto;
+    max-width: 80rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  // Fonts
+  @font-face {
+    font-family: 'LibreFranklinSemiBold';
+    src: url('/fonts/LibreFranklin-SemiBold.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'LibreFranklinMedium';
+    src: url('/fonts/LibreFranklin-Medium.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'SourceSansRegular';
+    src: url('/fonts/SourceSans-Regular.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'SourceSansMedium';
+    src: url('/fonts/SourceSans-Medium.ttf') format('truetype');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  .lf-semibold {
+    font-family: 'LibreFranklinSemiBold', sans-serif;
+    font-size: 2rem;
+  }
+
+  .lf-medium {
+    font-family: 'LibreFranklinMedium', sans-serif;
+    font-size: 1.25rem;
+  }
+
+  .sans-medium {
+    font-family: 'SourceSansMedium', sans-serif;
+    font-size: 1.25rem;
+  }
+
+  .sans-regular {
+    font-family: 'SourceSansRegular', sans-serif;
+    line-height: 1.6875rem;
+    font-size: 1rem;
+  }
+
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
+    section {
+      padding: 3rem 0;
+    }
+
+    .wrapper {
+      padding-right: 2rem;
+      padding-left: 2rem;
+    }
+
+    .lf-semibold {
+      font-size: 2.5rem;
+    }
+
+    .sans-medium {
+      font-size: 1.5rem;
+    }
+
+    .sans-regular {
+      line-height: 1.75rem;
+      font-size: 1.125rem;
+    }
+  }
+
+  // Above tablet
+  @media only screen and (min-width: $tablet) {
+    .wrapper {
+      padding-right: 3rem;
+      padding-left: 3rem;
+    }
+  }
 </style>

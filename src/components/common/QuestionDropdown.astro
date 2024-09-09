@@ -1,0 +1,151 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { Question } from './Questions.astro';
+
+interface Props {
+  question: Question;
+  index: number;
+}
+
+const { question, index } = Astro.props;
+const { text, answer } = question;
+---
+
+<div class='container sans-regular'>
+  <div class='question'>
+    <div>
+      <span>{`${index} .`}</span>
+      <p>{text}</p>
+    </div>
+    <button
+      id={`button-${index}`}
+      class='faq'
+      data-show='false'
+    >
+      <Icon
+        name='material-symbols:close'
+        width={30}
+        height={30}
+      />
+    </button>
+  </div>
+  <div
+    id={`answer-${index}`}
+    class='answer'
+    data-show='false'
+  >
+    {answer}
+  </div>
+</div>
+
+<style lang='scss'>
+  @import '../../styles/variables.scss';
+
+  .container {
+    color: $dark;
+    background-color: $neutral-light;
+    margin-bottom: 2rem;
+    padding: 1.25rem 1rem 0;
+    position: relative;
+    border-radius: 0.25rem;
+  }
+
+  .question {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+
+    div {
+      display: flex;
+
+      span {
+        min-width: max-content;
+        margin-right: 0.5rem;
+      }
+
+      p {
+        margin-right: 0.5rem;
+      }
+    }
+
+    button {
+      cursor: pointer;
+
+      &[data-show='false'] {
+        transition: rotate 0.2s ease;
+        rotate: -45deg;
+      }
+
+      &[data-show='true'] {
+        transition: rotate 0.2s ease;
+        rotate: 0deg;
+      }
+
+      &:last-child {
+        display: flex;
+        justify-self: flex-end;
+        background: transparent;
+        border: 0;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .answer {
+    padding-left: 1.5rem;
+
+    &[data-show='false'] {
+      height: 0;
+      transition: all 0.3s ease-in;
+      transition-property: height, padding;
+      overflow: hidden;
+    }
+
+    &[data-show='true'] {
+      height: var(--openHeight);
+      transition: all 0.3s ease-out;
+      transition-property: height, padding;
+      overflow: hidden;
+      padding-bottom: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll('button.faq');
+
+  buttons.forEach((button) => {
+    const id = button.id.split('-')[1];
+    const answerElement = document.getElementById(`answer-${id}`);
+    answerElement.style.setProperty(
+      '--openHeight',
+      answerElement.scrollHeight + 'px'
+    );
+
+    button.addEventListener('click', () => {
+      openDropdown(id);
+    });
+  });
+
+  const openDropdown = (id: string) => {
+    const buttonElement = document.getElementById(`button-${id}`);
+    const answerElement = document.getElementById(`answer-${id}`);
+
+    answerElement.style.setProperty(
+      '--openHeight',
+      answerElement.scrollHeight + 'px'
+    );
+
+    if (answerElement.dataset.show === 'false') {
+      buttonElement.dataset.show = 'true';
+      answerElement.dataset.show = 'true';
+    } else {
+      buttonElement.dataset.show = 'false';
+      answerElement.dataset.show = 'false';
+    }
+  };
+</script>

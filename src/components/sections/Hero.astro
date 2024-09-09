@@ -1,0 +1,62 @@
+---
+import Button from '../common/Button.astro';
+---
+
+<div class='image'>
+  <div class='container'>
+    <h1 class='lf-semibold'>Business Consulting & Advisory Services</h1>
+    <div class='btn-container'>
+      <Button
+        className='cta'
+        text='Free Consultation'
+      />
+    </div>
+  </div>
+</div>
+
+<style lang='scss'>
+  @import '../../styles/variables.scss';
+
+  .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44rem;
+    background-image: url('../../images/hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: $white;
+    max-width: 27.5rem;
+
+    h1 {
+      margin-bottom: 3rem;
+    }
+  }
+
+  .btn-container {
+    width: 100%;
+    max-width: $max-btn-width;
+  }
+
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
+    .container {
+      h1 {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .btn-container {
+      width: max-content;
+    }
+  }
+</style>

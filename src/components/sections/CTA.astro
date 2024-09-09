@@ -1,0 +1,65 @@
+---
+import Button from '../common/Button.astro';
+---
+
+<section>
+  <div class='wrapper'>
+    <span class='sans-medium'>
+      Grow your <strong><em>equity</em></strong> and make your business thrive</span
+    >
+    <div class='btn-container'>
+      <Button
+        className='cta'
+        text='Contact Us'
+        variant='secondary'
+      />
+    </div>
+  </div>
+</section>
+
+<style lang='scss'>
+  @import '../../styles/variables.scss';
+
+  section {
+    background-color: $primary;
+    color: $white;
+    padding: 1.5rem 0;
+    text-align: center;
+
+    span {
+      margin-right: 0;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .btn-container {
+    width: 100%;
+    max-width: $max-btn-width;
+    margin-top: 1.5rem;
+  }
+
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
+    section > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+
+      span {
+        margin-right: 1rem;
+      }
+    }
+
+    .btn-container {
+      width: max-content;
+      margin-top: 0;
+    }
+  }
+</style>
