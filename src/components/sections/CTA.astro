@@ -26,6 +26,10 @@ import Button from '../common/Button.astro';
     padding: 1.5rem 0;
     text-align: center;
 
+    span {
+      margin-right: 0;
+    }
+
     > div {
       display: flex;
       flex-direction: column;
@@ -35,19 +39,26 @@ import Button from '../common/Button.astro';
   }
 
   .btn-container {
+    width: 100%;
+    max-width: $max-btn-width;
     margin-top: 1.5rem;
   }
 
-  // Above tablet
-  @media only screen and (min-width: $tablet) {
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
     section > div {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
+
+      span {
+        margin-right: 1rem;
+      }
     }
 
     .btn-container {
+      width: max-content;
       margin-top: 0;
     }
   }

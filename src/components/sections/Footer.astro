@@ -3,10 +3,8 @@ import { Image } from 'astro:assets';
 import logo from '../../images/text-logo.svg';
 import { Icon } from 'astro-icon/components';
 
-import type { Link } from '../../pages/index.astro';
-
 interface Props {
-  links: Link[];
+  links: string[];
 }
 
 const { links } = Astro.props;
@@ -22,8 +20,8 @@ const { links } = Astro.props;
         <Image
           src={logo}
           alt='Logo'
-          width='140'
-          height='140'
+          width='129'
+          height='123'
         />
       </a>
       <p class='sans-regular'>
@@ -33,14 +31,9 @@ const { links } = Astro.props;
       </p>
       <ul>
         {
-          links.map((link: Link) => (
+          links.map((link: string) => (
             <li>
-              <a
-                class='lf-medium'
-                href={link.href}
-              >
-                {link.text}
-              </a>
+              <a class='lf-medium nav-link'>{link}</a>
             </li>
           ))
         }
@@ -79,7 +72,13 @@ const { links } = Astro.props;
         <Icon name='material-symbols:copyright-outline-rounded' />
       </span>
       <span>2024</span>
-      <span><a href=''>jamiesullivansoftware.com</a></span>
+      <span
+        ><a
+          target='_blank'
+          href='https://jamiesullivansoftware.com'
+          >jamiesullivansoftware.com</a
+        ></span
+      >
     </div>
   </div>
 </footer>
@@ -119,6 +118,7 @@ const { links } = Astro.props;
     }
 
     a {
+      cursor: pointer;
       color: $white;
       text-decoration: none;
 

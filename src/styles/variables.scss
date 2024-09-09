@@ -4,13 +4,16 @@ $dark: #000413;
 $white: #fefeff;
 $neutral-light: #e7e7f0;
 $neutral-dark: #a29fb9;
+$success: #0cae3a;
+$error: #d51616;
 
 // Breakpoints
 $tablet: 58.125rem;
-$mobile: 30rem;
+$mobile: 35.25rem;
 
 // Button
 $primary-button-active-shadow: inset 0.04rem 0.04rem 0.3rem $dark;
 $primary-button-focus-shadow: 0 0 0 0.15rem $dark;
 $secondary-button-active-shadow: inset 0.04rem 0.04rem 0.15rem $dark;
 $secondary-button-focus-shadow: 0 0 0 0.15rem $dark;
+$max-btn-width: 20rem;

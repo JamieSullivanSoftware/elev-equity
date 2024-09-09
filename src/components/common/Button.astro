@@ -24,6 +24,7 @@ const { className, text, variant = 'primary', type = 'button' } = Astro.props;
   @import '../../styles/variables.scss';
 
   button {
+    width: 100%;
     border: none;
     cursor: pointer;
     outline: 0;
@@ -39,6 +40,7 @@ const { className, text, variant = 'primary', type = 'button' } = Astro.props;
   .btn {
     padding: 1.25rem 2rem;
     border-radius: 0.5rem;
+    min-width: max-content;
 
     &_primary {
       background-color: $primary;
@@ -82,14 +84,29 @@ const { className, text, variant = 'primary', type = 'button' } = Astro.props;
       }
     }
   }
+
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
+    .button {
+      width: max-content;
+    }
+  }
 </style>
 
 <script>
   const ctaButtons = document.querySelectorAll('button.cta');
-
-  ctaButtons.forEach((button) => {
+  ctaButtons.forEach((button: HTMLButtonElement) => {
     button.addEventListener('click', () => {
-      console.log('CTA button was clicked!');
+      const form = document.getElementById('contact-form') as HTMLFormElement;
+      const input = form.elements[0] as HTMLInputElement;
+      if (input) {
+        document.getElementById('contact').scrollIntoView({
+          behavior: 'smooth',
+        });
+        setTimeout(function () {
+          input.focus();
+        }, 500);
+      }
     });
   });
 </script>

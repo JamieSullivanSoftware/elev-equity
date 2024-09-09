@@ -3,10 +3,8 @@ import { Image } from 'astro:assets';
 import logo from '../../images/logo.svg';
 import { Icon } from 'astro-icon/components';
 
-import type { Link } from '../../pages/index.astro';
-
 interface Props {
-  links: Link[];
+  links: string[];
 }
 
 const { links } = Astro.props;
@@ -14,32 +12,54 @@ const { links } = Astro.props;
 
 <nav>
   <div class='wrapper container'>
-    <a href='#'>
-      <Image
-        src={logo}
-        alt='Logo'
-        width='60'
-        height='50'
-      />
-    </a>
+    <div>
+      <a href='#'>
+        <Image
+          src={logo}
+          alt='Logo'
+          width='70'
+          height='59'
+        />
+      </a>
 
-    <Icon
-      class='mobile-icon'
-      name='material-symbols:menu-rounded'
-      width={40}
-      height={40}
-    />
+      <button
+        data-active='false'
+        id='mobile-button'
+      >
+        <Icon
+          class='mobile-icon'
+          name='material-symbols:menu-rounded'
+          width={40}
+          height={40}
+        />
+      </button>
 
+      <ul>
+        {
+          links.map((link: string) => (
+            <li>
+              <a
+                class='lf-medium nav-link'
+                href='#'
+              >
+                {link}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div
+    id='mobile-menu'
+    data-active='false'
+    class='mobile-menu hidden wrapper'
+  >
     <ul>
       {
-        links.map((link: Link) => (
+        links.map((link: string) => (
           <li>
-            <a
-              class='lf-medium'
-              href={link.href}
-            >
-              {link.text}
-            </a>
+            <a class='lf-medium nav-link'>{link}</a>
           </li>
         ))
       }
@@ -51,45 +71,169 @@ const { links } = Astro.props;
   @use 'sass:color';
   @import '../../styles/variables.scss';
 
+  $hover-color: color.scale($primary, $lightness: 75%);
+
   nav {
     background-color: $dark;
-    padding: 1rem 0rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
   .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0rem;
+    }
+
+    ul {
+      display: none;
+    }
   }
 
-  ul {
-    display: none;
-  }
-
-  .mobile-icon {
-    display: block;
-    color: $white;
+  button {
+    background: none;
+    border: 0;
+    cursor: pointer;
   }
 
   a {
     color: $white;
     text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: $hover-color;
+    }
   }
 
-  a:hover {
-    color: color.scale($primary, $lightness: 75%);
+  #mobile-button {
+    transition: all 0.3s ease-out;
+
+    &[data-active='false'] {
+      transform: rotate(0deg);
+    }
+
+    &[data-active='true'] {
+      transform: rotate(-90deg);
+    }
   }
 
-  @media only screen and (min-width: $mobile) {
+  .mobile-icon {
+    display: block;
+    color: $white;
+
+    &:hover {
+      color: $hover-color;
+    }
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: $dark;
+    position: absolute;
+    width: 100%;
+
     ul {
-      display: grid;
-      grid-template-columns: repeat(5, min-content);
-      grid-gap: 1rem;
-      list-style: none;
+      overflow: hidden;
+      list-style-type: none;
+    }
+
+    li {
+      text-decoration: none;
+
+      &:first-child {
+        margin: 0.5rem 0 0.75rem !important;
+      }
+
+      &:not(:last-child) {
+        margin: 0.75rem 0;
+      }
+    }
+
+    a {
+      color: $white;
+      display: block;
+      padding: 5px 20px;
+
+      &:hover {
+        color: $hover-color;
+      }
+    }
+
+    &[data-active='false'] {
+      ul {
+        height: 0;
+        left: 0;
+        opacity: 0;
+        transition: all 0.5s ease;
+      }
+    }
+
+    &[data-active='true'] {
+      ul {
+        height: 15.625rem;
+        opacity: 1;
+        transition: all 0.5s ease;
+        list-style-type: none;
+      }
+    }
+  }
+
+  // Above mobile
+  @media only screen and (min-width: $mobile) {
+    nav {
+      position: static;
+    }
+
+    .container {
+      ul {
+        display: grid;
+        grid-template-columns: repeat(5, min-content);
+        grid-gap: 1rem;
+        list-style: none;
+      }
     }
 
     .mobile-icon {
       display: none;
     }
+
+    .mobile-menu {
+      display: none;
+    }
   }
 </style>
+
+<script>
+  const links = document.querySelectorAll('a.nav-link');
+  const mobileButton = document.getElementById('mobile-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  links.forEach((link: HTMLAnchorElement) => {
+    link.addEventListener('click', () => {
+      mobileButton.dataset.active = 'false';
+      mobileMenu.dataset.active = 'false';
+      document
+        .getElementById(link.innerHTML.toLowerCase().trim())
+        .scrollIntoView({
+          behavior: 'smooth',
+        });
+    });
+  });
+
+  mobileButton.addEventListener('click', () => {
+    if (mobileMenu.dataset.active === 'true') {
+      mobileButton.dataset.active = 'false';
+      mobileMenu.dataset.active = 'false';
+    } else {
+      mobileButton.dataset.active = 'true';
+      mobileMenu.dataset.active = 'true';
+    }
+  });
+</script>

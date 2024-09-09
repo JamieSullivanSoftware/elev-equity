@@ -55,6 +55,32 @@ const { title } = Astro.props;
   }
 
   // Global
+  input,
+  textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0.08rem solid $dark;
+    border-radius: 0.5rem;
+    padding: 1rem 0.75rem;
+
+    &::placeholder {
+      color: $neutral-dark;
+      font-style: italic;
+    }
+
+    &::-ms-input-placeholder {
+      color: $neutral-dark;
+      font-style: italic;
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+      outline: $primary solid 0.1rem;
+      border-color: $primary;
+    }
+  }
+
   .wrapper {
     margin: 0 auto;
     max-width: 80rem;
@@ -98,7 +124,7 @@ const { title } = Astro.props;
 
   .lf-medium {
     font-family: 'LibreFranklinMedium', sans-serif;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
 
   .sans-medium {
@@ -125,10 +151,6 @@ const { title } = Astro.props;
 
     .lf-semibold {
       font-size: 2.5rem;
-    }
-
-    .lf-medium {
-      font-size: 1.25rem;
     }
 
     .sans-medium {
