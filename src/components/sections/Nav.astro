@@ -59,12 +59,7 @@ const { links } = Astro.props;
       {
         links.map((link: string) => (
           <li>
-            <a
-              class='lf-medium nav-link'
-              href='#'
-            >
-              {link}
-            </a>
+            <a class='lf-medium nav-link'>{link}</a>
           </li>
         ))
       }
@@ -107,6 +102,7 @@ const { links } = Astro.props;
   a {
     color: $white;
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
       color: $hover-color;
@@ -221,6 +217,8 @@ const { links } = Astro.props;
 
   links.forEach((link: HTMLAnchorElement) => {
     link.addEventListener('click', () => {
+      mobileButton.dataset.active = 'false';
+      mobileMenu.dataset.active = 'false';
       document
         .getElementById(link.innerHTML.toLowerCase().trim())
         .scrollIntoView({
