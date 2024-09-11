@@ -38,12 +38,7 @@ const { links } = Astro.props;
         {
           links.map((link: string) => (
             <li>
-              <a
-                class='lf-medium nav-link'
-                href='#'
-              >
-                {link}
-              </a>
+              <button class='lf-medium nav-link'>{link}</button>
             </li>
           ))
         }
@@ -59,7 +54,7 @@ const { links } = Astro.props;
       {
         links.map((link: string) => (
           <li>
-            <a class='lf-medium nav-link'>{link}</a>
+            <button class='lf-medium nav-link'>{link}</button>
           </li>
         ))
       }
@@ -99,7 +94,7 @@ const { links } = Astro.props;
     cursor: pointer;
   }
 
-  a {
+  button {
     color: $white;
     text-decoration: none;
     cursor: pointer;
@@ -142,11 +137,12 @@ const { links } = Astro.props;
     ul {
       overflow: hidden;
       list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     li {
-      text-decoration: none;
-
       &:first-child {
         margin: 0.5rem 0 0.75rem !important;
       }
@@ -156,10 +152,11 @@ const { links } = Astro.props;
       }
     }
 
-    a {
+    button {
       color: $white;
       display: block;
       padding: 5px 20px;
+      text-align: center;
 
       &:hover {
         color: $hover-color;
@@ -211,7 +208,7 @@ const { links } = Astro.props;
 </style>
 
 <script>
-  const links = document.querySelectorAll('a.nav-link');
+  const links = document.querySelectorAll('button.nav-link');
   const mobileButton = document.getElementById('mobile-button');
   const mobileMenu = document.getElementById('mobile-menu');
 
