@@ -1,40 +1,8 @@
 ---
-import { Picture, Image } from 'astro:assets';
-// import myImage from '../../images/hero_1x.webp';
-// import myImage from '../../images/final.jpg';
 import Button from '../common/Button.astro';
-// console.log(myImage.width);
 ---
 
-<div class='test'>
-  <!-- <Image
-    src={myImage}
-    widths={[240, 540, 720, myImage.width]}
-    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1640px) 720px, ${myImage.width}px`}
-    alt='A description of my image.'
-  /> -->
-  <!-- <Picture
-    src={myImage}
-    widths={[240, 540, 720, myImage.width]}
-    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${myImage.width}px`}
-    formats={['webp', 'jpg']}
-    alt=''
-  /> -->
-  <!-- 
-  <Image
-    src={myImage}
-    alt=''
-    width={myImage.width}
-    densities={[1, 1.5, 2]}
-  /> -->
-
-  <!-- <Image
-    src={myImage}
-    alt=''
-    widths={[240, 540, 720, myImage.width]}
-    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${myImage.width}px`}
-  /> -->
-
+<div class='background-container'>
   <picture>
     <source
       media='(min-width: 930px)'
@@ -65,36 +33,10 @@ import Button from '../common/Button.astro';
   </div>
 </div>
 
-<!-- <div class='image'>
-  <div class='container wrapper'>
-    <h1 class='lf-semibold'>Business Consulting & Advisory Services</h1>
-    <div class='btn-container'>
-      <Button
-        className='cta'
-        text='Free Consultation'
-      />
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class='test'>
-  <div class='image'>
-    <div class='container wrapper'>
-      <h1 class='lf-semibold'>Business Consulting & Advisory Services</h1>
-      <div class='btn-container'>
-        <Button
-          className='cta'
-          text='Free Consultation'
-        />
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <style lang='scss'>
   @import '../../styles/variables.scss';
 
-  .test {
+  .background-container {
     height: 22rem;
     overflow: hidden;
     display: flex;
@@ -114,22 +56,6 @@ import Button from '../common/Button.astro';
     min-width: 100%;
     min-height: 100%;
   }
-
-  // .image {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   height: 100%;
-  //   background-image: url('../../images/hero.webp');
-  //   // background-position: center;
-  //   background-position: 25% 75%;
-  //   // background-position: bottom 50px right 0;
-  //   background-repeat: no-repeat;
-  //   background-size: cover;
-  //   // margin-top: -0.25rem;
-  //   // position: relative;
-  //   // overflow: hidden;
-  // }
 
   .container {
     display: flex;
@@ -158,7 +84,7 @@ import Button from '../common/Button.astro';
       }
     }
 
-    .test {
+    .background-container {
       height: 33.75rem;
     }
 
@@ -175,7 +101,7 @@ import Button from '../common/Button.astro';
       }
     }
 
-    .test {
+    .background-container {
       height: 38rem;
     }
   }
