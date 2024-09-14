@@ -13,7 +13,10 @@ const { links } = Astro.props;
 <nav>
   <div class='wrapper container'>
     <div>
-      <a href='#'>
+      <a
+        href='#'
+        aria-label='logo link'
+      >
         <Image
           src={logo}
           alt='Logo'
@@ -25,6 +28,8 @@ const { links } = Astro.props;
       <button
         data-active='false'
         id='mobile-button'
+        aria-label='mobile menu button'
+        type='button'
       >
         <Icon
           class='mobile-icon'
@@ -38,7 +43,13 @@ const { links } = Astro.props;
         {
           links.map((link: string) => (
             <li>
-              <button class='lf-medium nav-link'>{link}</button>
+              <button
+                class='lf-medium nav-link'
+                aria-label={`nav link ${link}`}
+                type='button'
+              >
+                {link}
+              </button>
             </li>
           ))
         }
@@ -54,7 +65,13 @@ const { links } = Astro.props;
       {
         links.map((link: string) => (
           <li>
-            <button class='lf-medium nav-link'>{link}</button>
+            <button
+              class='lf-medium nav-link'
+              aria-label={`nav link ${link}`}
+              type='button'
+            >
+              {link}
+            </button>
           </li>
         ))
       }
@@ -65,8 +82,6 @@ const { links } = Astro.props;
 <style lang='scss'>
   @use 'sass:color';
   @import '../../styles/variables.scss';
-
-  $hover-color: color.scale($primary, $lightness: 75%);
 
   nav {
     background-color: $dark;
@@ -100,7 +115,7 @@ const { links } = Astro.props;
     cursor: pointer;
 
     &:hover {
-      color: $hover-color;
+      color: $link-hover-color;
     }
   }
 
@@ -121,7 +136,7 @@ const { links } = Astro.props;
     color: $white;
 
     &:hover {
-      color: $hover-color;
+      color: $link-hover-color;
     }
   }
 
@@ -159,7 +174,7 @@ const { links } = Astro.props;
       text-align: center;
 
       &:hover {
-        color: $hover-color;
+        color: $link-hover-color;
       }
     }
 

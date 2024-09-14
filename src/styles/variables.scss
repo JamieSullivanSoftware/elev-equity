@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Colors
 $primary: #2e1f8b;
 $dark: #000413;
@@ -6,6 +8,7 @@ $neutral-light: #e7e7f0;
 $neutral-dark: #a29fb9;
 $success: #0cae3a;
 $error: #d51616;
+$link-hover-color: color.scale($primary, $lightness: 75%);
 
 // Breakpoints
 $tablet: 58.125rem;
