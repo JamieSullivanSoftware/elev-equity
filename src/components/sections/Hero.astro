@@ -2,13 +2,33 @@
 import Button from '../common/Button.astro';
 ---
 
-<div class='image'>
-  <div class='container'>
+<div class='background-container'>
+  <picture>
+    <source
+      media='(min-width: 930px)'
+      srcset='/src/images/hero-desktop.webp'
+    />
+    <source
+      media='(min-width: 564px)'
+      srcset='/src/images/hero-tablet.webp'
+    />
+    <source
+      media='(max-width: 564px)'
+      srcset='/src/images/hero-mobile.webp'
+    />
+    <img
+      src='/src/images/hero.jpg'
+      alt=''
+    />
+  </picture>
+
+  <div class='container wrapper'>
     <h1 class='lf-semibold'>Business Consulting & Advisory Services</h1>
     <div class='btn-container'>
       <Button
         className='cta'
         text='Free Consultation'
+        label='free consultation button'
       />
     </div>
   </div>
@@ -17,28 +37,38 @@ import Button from '../common/Button.astro';
 <style lang='scss'>
   @import '../../styles/variables.scss';
 
-  .image {
+  .background-container {
+    height: 22rem;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 44rem;
-    background-image: url('../../images/hero.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+    overflow: hidden;
+    background-color: $dark;
+  }
+
+  img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
+
+  picture {
+    min-width: 100%;
+    min-height: 100%;
   }
 
   .container {
     display: flex;
+    position: absolute;
     flex-direction: column;
     align-items: center;
     text-align: center;
     color: $white;
-    max-width: 27.5rem;
+    max-width: 26.25rem;
 
     h1 {
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
     }
   }
 
@@ -55,8 +85,25 @@ import Button from '../common/Button.astro';
       }
     }
 
+    .background-container {
+      height: 33.75rem;
+    }
+
     .btn-container {
       width: max-content;
+    }
+  }
+
+  // Above tablet
+  @media only screen and (min-width: $tablet) {
+    .container {
+      h1 {
+        margin-bottom: 3rem;
+      }
+    }
+
+    .background-container {
+      height: 38rem;
     }
   }
 </style>
