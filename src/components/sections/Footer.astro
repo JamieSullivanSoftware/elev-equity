@@ -16,6 +16,7 @@ const { links } = Astro.props;
       <a
         class='logo'
         href='#'
+        aria-label='logo link'
       >
         <Image
           src={logo}
@@ -33,7 +34,13 @@ const { links } = Astro.props;
         {
           links.map((link: string) => (
             <li>
-              <a class='lf-medium nav-link'>{link}</a>
+              <button
+                class='lf-medium nav-link'
+                aria-label={`nav link ${link}`}
+                type='button'
+              >
+                {link}
+              </button>
             </li>
           ))
         }
@@ -45,21 +52,30 @@ const { links } = Astro.props;
   </div>
   <div class='bottom'>
     <div class='social'>
-      <a href=''>
+      <a
+        href='https://facebook.com'
+        aria-label='facebook link'
+      >
         <Icon
           name='fa6-brands:facebook'
           width={36}
           height={36}
         />
       </a>
-      <a href=''>
+      <a
+        href='https://linkedin.com'
+        aria-label='linkedin link'
+      >
         <Icon
           name='fa6-brands:linkedin'
           width={36}
           height={36}
         />
       </a>
-      <a href=''>
+      <a
+        href='https://instagram.com'
+        aria-label='instagram link'
+      >
         <Icon
           name='fa6-brands:instagram'
           width={36}
@@ -75,6 +91,7 @@ const { links } = Astro.props;
       <span
         ><a
           target='_blank'
+          aria-label='jamie sullivan software link'
           href='https://jamiesullivansoftware.com'
           >jamiesullivansoftware.com</a
         ></span
@@ -123,7 +140,19 @@ const { links } = Astro.props;
       text-decoration: none;
 
       &:hover {
-        color: color.scale($primary, $lightness: 75%);
+        color: $link-hover-color;
+      }
+    }
+
+    .nav-link {
+      background: none;
+      border: 0;
+      cursor: pointer;
+      color: $white;
+      text-decoration: none;
+
+      &:hover {
+        color: $link-hover-color;
       }
     }
   }
@@ -151,7 +180,7 @@ const { links } = Astro.props;
       color: $white;
 
       &:hover {
-        color: color.scale($primary, $lightness: 75%);
+        color: $link-hover-color;
       }
     }
 

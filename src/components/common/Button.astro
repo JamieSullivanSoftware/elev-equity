@@ -5,16 +5,24 @@ type Type = 'button' | 'submit';
 interface Props {
   className: string;
   text: string;
+  label: string;
   variant?: Variant;
   type?: Type;
 }
 
-const { className, text, variant = 'primary', type = 'button' } = Astro.props;
+const {
+  className,
+  text,
+  label,
+  variant = 'primary',
+  type = 'button',
+} = Astro.props;
 ---
 
 <button
   class={`lf-medium btn btn_${variant} ${className}`}
   type={type}
+  aria-label={label}
 >
   {text}
 </button>
