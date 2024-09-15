@@ -1,27 +1,20 @@
 ---
+import desktopImage from '../../images/hero-desktop.webp';
+import tabletImage from '../../images/hero-tablet.webp';
+import mobileImage from '../../images/hero-mobile.webp';
+import fallbackImage from '../../images/hero.jpg';
 import Button from '../common/Button.astro';
+
+import PictureImage from '../common/PictureImage.astro';
 ---
 
 <div class='background-container'>
-  <picture>
-    <source
-      media='(min-width: 930px)'
-      srcset='/src/images/hero-desktop.webp'
-    />
-    <source
-      media='(min-width: 564px)'
-      srcset='/src/images/hero-tablet.webp'
-    />
-    <source
-      media='(max-width: 564px)'
-      srcset='/src/images/hero-mobile.webp'
-    />
-    <img
-      src='/src/images/hero.jpg'
-      alt=''
-    />
-  </picture>
-
+  <PictureImage
+    mobileImgUrl={mobileImage}
+    tabletImgUrl={tabletImage}
+    desktopImgUrl={desktopImage}
+    fallbackImgUrl={fallbackImage}
+  />
   <div class='container wrapper'>
     <h1 class='lf-semibold'>Business Consulting & Advisory Services</h1>
     <div class='btn-container'>
