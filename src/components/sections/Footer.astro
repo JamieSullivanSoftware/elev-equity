@@ -25,11 +25,9 @@ const { links } = Astro.props;
           height='123'
         />
       </a>
-      <p class='sans-regular'>
-        Our primary goal is to empower companies to achieve sustainable growth
-        by providing expert financial consulting, strategic planning, and
-        innovative solutions tailored to their unique needs.
-      </p>
+      <div class='sans-large'>
+        <p>Unlock big business expertise, designed for small businesses.</p>
+      </div>
       <ul>
         {
           links.map((link: string) => (
@@ -52,16 +50,6 @@ const { links } = Astro.props;
   </div>
   <div class='bottom'>
     <div class='social'>
-      <a
-        href='https://facebook.com'
-        aria-label='facebook link'
-      >
-        <Icon
-          name='fa6-brands:facebook'
-          width={36}
-          height={36}
-        />
-      </a>
       <a
         href='https://linkedin.com'
         aria-label='linkedin link'
@@ -116,12 +104,13 @@ const { links } = Astro.props;
     justify-items: center;
 
     .logo {
-      order: 3;
+      order: 2;
     }
 
-    p {
-      order: 2;
-      max-width: 22rem;
+    div {
+      text-align: center;
+      order: 3;
+      max-width: 25rem;
     }
 
     ul {
@@ -186,7 +175,7 @@ const { links } = Astro.props;
 
     .social {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       grid-gap: 1.5rem;
       margin: 4rem 0 2rem;
     }
@@ -214,7 +203,7 @@ const { links } = Astro.props;
         order: 1;
       }
 
-      p {
+      div {
         order: 2;
       }
 
