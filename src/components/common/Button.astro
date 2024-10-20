@@ -20,7 +20,7 @@ const {
 ---
 
 <button
-  class={`lf-medium btn btn_${variant} ${className}`}
+  class={`btn btn_${variant} ${className}`}
   type={type}
   aria-label={label}
 >
@@ -46,9 +46,11 @@ const {
   }
 
   .btn {
-    padding: 1.25rem 2rem;
     border-radius: 0.5rem;
     min-width: max-content;
+    font-family: 'LibreFranklinMedium', sans-serif;
+    padding: 1rem 1.75rem;
+    font-size: 1.125rem;
 
     &_primary {
       background-color: $primary;

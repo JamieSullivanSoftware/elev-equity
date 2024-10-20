@@ -11,8 +11,13 @@ $error: #d51616;
 $link-hover-color: color.scale($primary, $lightness: 75%);
 
 // Breakpoints
-$tablet: 58.125rem;
-$mobile: 35.25rem;
+// < 576px - Mobile
+// 576px - 810px - Tablet
+// 810px - 1400px Laptop
+// > 1400px - Desktop
+$mobile: 36rem;
+$tablet: 50.625rem;
+$desktop: 87.5rem;
 
 // Button
 $primary-button-active-shadow: inset 0.04rem 0.04rem 0.3rem $dark;
