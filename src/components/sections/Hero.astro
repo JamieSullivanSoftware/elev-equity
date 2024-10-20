@@ -1,6 +1,6 @@
 ---
 import desktopImage from '../../images/desktop.webp';
-import laptopImage from '../../images/laptop.webp';
+import laptopImage from '../../images/laptop2.webp';
 import tabletImage from '../../images/tablet.webp';
 import mobileImage from '../../images/mobile2.webp';
 import fallbackImage from '../../images/hero.jpg';
@@ -66,8 +66,7 @@ import PictureImage from '../common/PictureImage.astro';
   .content {
     display: grid;
     grid-template-columns: 1fr;
-    top: calc(42% - 8rem);
-    left: calc(50% - 15rem);
+    top: calc(40% - 8rem);
     position: absolute;
     align-items: center;
     justify-items: center;
@@ -88,7 +87,7 @@ import PictureImage from '../common/PictureImage.astro';
       font-size: 1.125rem; // 18px
       font-style: italic;
       line-height: 1.8rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.75rem;
     }
   }
 
@@ -99,34 +98,26 @@ import PictureImage from '../common/PictureImage.astro';
 
   // Above mobile
   @media only screen and (min-width: $mobile) {
-    .content {
-      h1 {
-        font-size: 2.5rem;
-        line-height: 3.75rem;
-      }
-
-      p {
-        font-size: 1.25rem;
-        font-style: italic;
-        line-height: 2rem;
-      }
-    }
-
     .background-container {
       height: 29.75rem;
       max-width: 50.625rem;
-    }
-
-    .btn-container {
-      // width: max-content;
     }
   }
 
   // Laptop
   @media only screen and (min-width: $tablet) {
     .content {
+      max-width: 34rem;
+
       h1 {
-        // margin-bottom: 3rem;
+        font-size: 2.25rem; // 36px
+        line-height: 3.5rem;
+      }
+
+      p {
+        font-size: 1.25rem; // 20px
+        line-height: 2rem;
+        max-width: 32rem;
       }
     }
 
@@ -138,6 +129,23 @@ import PictureImage from '../common/PictureImage.astro';
 
   // Above Desktop
   @media only screen and (min-width: $desktop) {
+    .content {
+      max-width: 37rem;
+
+      h1 {
+        font-size: 2.5rem; // 40px
+        line-height: 3.875rem;
+        margin-bottom: 1.25rem;
+      }
+
+      p {
+        font-size: 1.5rem; // 24px
+        line-height: 2.4375rem;
+        max-width: 37rem;
+        margin-bottom: 2rem;
+      }
+    }
+
     .background-container {
       height: 40.25rem;
       max-width: 112.5rem;
