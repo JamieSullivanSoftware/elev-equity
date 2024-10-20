@@ -2,7 +2,7 @@
 import desktopImage from '../../images/desktop.webp';
 import laptopImage from '../../images/laptop.webp';
 import tabletImage from '../../images/tablet.webp';
-import mobileImage from '../../images/mobile.webp';
+import mobileImage from '../../images/mobile2.webp';
 import fallbackImage from '../../images/hero.jpg';
 import Button from '../common/Button.astro';
 
@@ -30,6 +30,7 @@ import PictureImage from '../common/PictureImage.astro';
           text='Free Consultation'
           label='free consultation button'
           variant='secondary'
+          size='sm'
         />
       </div>
     </div>
@@ -53,7 +54,7 @@ import PictureImage from '../common/PictureImage.astro';
   }
 
   .background-container {
-    height: 37.5rem;
+    height: 37.25rem;
     position: relative;
     display: flex;
     justify-content: center;
@@ -65,26 +66,29 @@ import PictureImage from '../common/PictureImage.astro';
   .content {
     display: grid;
     grid-template-columns: 1fr;
-    top: calc(42% - 10rem);
-    left: calc(50% - 19rem);
+    top: calc(42% - 8rem);
+    left: calc(50% - 15rem);
     position: absolute;
     align-items: center;
     justify-items: center;
     text-align: center;
     color: $white;
-    max-width: 38rem;
+    max-width: 28rem;
+    padding: 0 1rem;
 
     h1 {
       font-family: 'LibreFranklinSemiBold', sans-serif;
-      font-size: 1.8rem;
+      font-size: 1.875rem; // 30px
+      line-height: 2.875rem;
       margin-bottom: 1rem;
     }
 
     p {
       font-family: 'LibreFranklinMedium', sans-serif;
-      font-size: 1.25rem;
-      max-width: 32rem;
-      margin-bottom: 2.25rem;
+      font-size: 1.125rem; // 18px
+      font-style: italic;
+      line-height: 1.8rem;
+      margin-bottom: 2rem;
     }
   }
 
