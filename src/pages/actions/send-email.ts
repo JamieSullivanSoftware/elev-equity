@@ -12,17 +12,12 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
   const message = formData.get("message") as string | null;
   const errors = {
     fullname: '',
-    company: '',
     email: '',
     message: ''
   };
 
   if (typeof fullname !== 'string' || fullname.length <= 1) {
     errors.fullname += 'Please enter your name.';
-  }
-
-  if (typeof company !== 'string' || company.length <= 1) {
-    errors.company += 'Please enter your company name.';
   }
 
   if (
@@ -56,7 +51,7 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
       <div>
         <div style="margin-bottom: 32px">
           <h2>Name: ${fullname}</h2>
-          <h2>Company: ${company}</h2>
+          <h2>Company: ${company || 'N/A'}</h2>
           <h2>Email: ${email}</h2>
         </div>
         <p style="color: #222; font-size: 20px;">${message}</p>
@@ -64,7 +59,7 @@ export const POST: APIRoute = async ({ request, redirect, cookies }) => {
     `;
     await sendEmail({
       to: 'jamiesullivan523@gmail.com',
-      subject: `Inquiry from ${fullname} at ${company}`,
+      subject: `Inquiry from ${fullname}`,
       html,
     });
   } catch (error) {
