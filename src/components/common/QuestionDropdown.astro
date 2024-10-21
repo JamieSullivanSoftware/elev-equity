@@ -11,7 +11,7 @@ const { question, index } = Astro.props;
 const { text, answer } = question;
 ---
 
-<div
+<button
   id={`question-${index}`}
   class='faq container sans-regular'
   aria-label={`FAQ dropdown button ${index + 1}`}
@@ -41,7 +41,7 @@ const { text, answer } = question;
   >
     {answer}
   </div>
-</div>
+</button>
 
 <style lang='scss'>
   @import '../../styles/variables.scss';
@@ -54,6 +54,12 @@ const { text, answer } = question;
     padding: 1.25rem 1rem 0;
     position: relative;
     border-radius: 0.25rem;
+  }
+
+  .faq {
+    outline: 0;
+    border: 0;
+    text-align: left;
   }
 
   .question {
