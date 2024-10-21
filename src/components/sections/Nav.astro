@@ -214,8 +214,7 @@ const { links } = Astro.props;
         grid-template-columns: repeat(5, min-content);
         grid-gap: 2rem;
         list-style: none;
-        justify-self: center;
-        margin-right: 5rem;
+        justify-self: end;
       }
 
       .logo {
@@ -230,6 +229,16 @@ const { links } = Astro.props;
 
     .mobile-menu {
       display: none;
+    }
+  }
+
+  // Above Tablet
+  @media only screen and (min-width: $tablet) {
+    .container {
+      ul {
+        margin-right: 5rem;
+        justify-self: center;
+      }
     }
   }
 </style>
