@@ -1,28 +1,37 @@
 ---
-import desktopImage from '../../images/hero-desktop.webp';
-import tabletImage from '../../images/hero-tablet.webp';
-import mobileImage from '../../images/hero-mobile.webp';
-import fallbackImage from '../../images/hero.jpg';
+import desktopImage from '../../images/dublin-desktop.webp';
+import laptopImage from '../../images/dublin-laptop.webp';
+import tabletImage from '../../images/dublin-tablet.webp';
+import mobileImage from '../../images/dublin-mobile.webp';
+import fallbackImage from '../../images/dublin-fallback.jpg';
 import Button from '../common/Button.astro';
 
 import PictureImage from '../common/PictureImage.astro';
 ---
 
-<div class='background-container'>
-  <PictureImage
-    mobileImgUrl={mobileImage}
-    tabletImgUrl={tabletImage}
-    desktopImgUrl={desktopImage}
-    fallbackImgUrl={fallbackImage}
-  />
-  <div class='container wrapper'>
-    <h1 class='lf-semibold'>Business Consulting & Advisory Services</h1>
-    <div class='btn-container'>
-      <Button
-        className='cta'
-        text='Free Consultation'
-        label='free consultation button'
-      />
+<div class='container'>
+  <div class='background-container'>
+    <PictureImage
+      mobileImgUrl={mobileImage}
+      laptopImgUrl={laptopImage}
+      tabletImgUrl={tabletImage}
+      desktopImgUrl={desktopImage}
+      fallbackImgUrl={fallbackImage}
+    />
+    <div class='content'>
+      <h1>Unlock Big Business Expertise Designed for Small Businesses</h1>
+      <p>
+        Affordable, expert advisory and consulting services from someone who
+        understands your unique needs.
+      </p>
+      <div class='btn-container'>
+        <Button
+          className='cta'
+          text='Free Consultation'
+          label='free consultation button'
+          variant='secondary'
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -30,38 +39,54 @@ import PictureImage from '../common/PictureImage.astro';
 <style lang='scss'>
   @import '../../styles/variables.scss';
 
+  /*
+    --- Hero Images ---
+    Desktop - 1800x650
+    Laptop - 1400x506
+    Tablet - 810x480
+    Mobile - 576x600
+  */
+
+  .container {
+    background-color: $dark;
+    height: auto;
+  }
+
   .background-container {
-    height: 22rem;
-    overflow: hidden;
+    height: 37.25rem;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     background-color: $dark;
+    max-width: 36rem;
   }
 
-  img {
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-  }
-
-  picture {
-    min-width: 100%;
-    min-height: 100%;
-  }
-
-  .container {
-    display: flex;
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+    top: calc(40% - 8rem);
     position: absolute;
-    flex-direction: column;
     align-items: center;
+    justify-items: center;
     text-align: center;
     color: $white;
-    max-width: 26.25rem;
+    max-width: 28rem;
+    padding: 0 1rem;
 
     h1 {
-      margin-bottom: 1.5rem;
+      font-family: 'LibreFranklinSemiBold', sans-serif;
+      font-size: 1.875rem; // 30px
+      line-height: 2.875rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-family: 'LibreFranklinMedium', sans-serif;
+      font-size: 1.125rem; // 18px
+      font-style: italic;
+      line-height: 1.8rem;
+      margin-bottom: 1.75rem;
     }
   }
 
@@ -72,31 +97,57 @@ import PictureImage from '../common/PictureImage.astro';
 
   // Above mobile
   @media only screen and (min-width: $mobile) {
-    .container {
+    .background-container {
+      height: 29.75rem;
+      max-width: 50.625rem;
+    }
+  }
+
+  // Laptop
+  @media only screen and (min-width: $tablet) {
+    .content {
+      max-width: 34rem;
+
       h1 {
+        font-size: 2.25rem; // 36px
+        line-height: 3.5rem;
+      }
+
+      p {
+        font-size: 1.25rem; // 20px
+        line-height: 2rem;
+        max-width: 32rem;
+      }
+    }
+
+    .background-container {
+      height: 31.25rem;
+      max-width: 87.5rem;
+    }
+  }
+
+  // Above Desktop
+  @media only screen and (min-width: $desktop) {
+    .content {
+      max-width: 37rem;
+
+      h1 {
+        font-size: 2.5rem; // 40px
+        line-height: 3.875rem;
+        margin-bottom: 1.25rem;
+      }
+
+      p {
+        font-size: 1.5rem; // 24px
+        line-height: 2.4375rem;
+        max-width: 37rem;
         margin-bottom: 2rem;
       }
     }
 
     .background-container {
-      height: 33.75rem;
-    }
-
-    .btn-container {
-      width: max-content;
-    }
-  }
-
-  // Above tablet
-  @media only screen and (min-width: $tablet) {
-    .container {
-      h1 {
-        margin-bottom: 3rem;
-      }
-    }
-
-    .background-container {
-      height: 38rem;
+      height: 40.25rem;
+      max-width: 112.5rem;
     }
   }
 </style>

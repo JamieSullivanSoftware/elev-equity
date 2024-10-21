@@ -6,6 +6,7 @@ import type { ImageMetadata } from 'astro';
 interface Props {
   mobileImgUrl: string | ImageMetadata;
   tabletImgUrl: string | ImageMetadata;
+  laptopImgUrl: string | ImageMetadata;
   desktopImgUrl: string | ImageMetadata;
   fallbackImgUrl: string | ImageMetadata;
   alt?: string;
@@ -14,6 +15,7 @@ interface Props {
 const {
   mobileImgUrl,
   tabletImgUrl,
+  laptopImgUrl,
   desktopImgUrl,
   fallbackImgUrl,
   alt = '',
@@ -26,6 +28,11 @@ const mobileImg = await getImage({
 
 const tabletImg = await getImage({
   src: tabletImgUrl,
+  format: 'webp',
+});
+
+const laptopImg = await getImage({
+  src: laptopImgUrl,
   format: 'webp',
 });
 
@@ -42,15 +49,19 @@ const fallbackImg = await getImage({
 
 <picture>
   <source
-    media='(min-width: 930px)'
+    media='(min-width: 1400px)'
     srcset={desktopImg.src}
   />
   <source
-    media='(min-width: 564px)'
+    media='(min-width: 810px)'
+    srcset={laptopImg.src}
+  />
+  <source
+    media='(min-width: 576px)'
     srcset={tabletImg.src}
   />
   <source
-    media='(max-width: 564px)'
+    media='(max-width: 576px)'
     srcset={mobileImg.src}
   />
   <img

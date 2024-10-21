@@ -1,18 +1,23 @@
 @use 'sass:color';
 
 // Colors
-$primary: #2e1f8b;
-$dark: #000413;
+$primary: #143370;
+$dark: #050B25;
 $white: #fefeff;
-$neutral-light: #e7e7f0;
-$neutral-dark: #a29fb9;
+$neutral-light: #e8e9ee;
+$neutral-dark: #717587;
 $success: #0cae3a;
 $error: #d51616;
 $link-hover-color: color.scale($primary, $lightness: 75%);
 
 // Breakpoints
-$tablet: 58.125rem;
-$mobile: 35.25rem;
+// < 576px - Mobile
+// 576px - 810px - Tablet
+// 810px - 1400px Laptop
+// > 1400px - Desktop
+$mobile: 36rem;
+$tablet: 50.625rem;
+$desktop: 87.5rem;
 
 // Button
 $primary-button-active-shadow: inset 0.04rem 0.04rem 0.3rem $dark;

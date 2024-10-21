@@ -49,7 +49,7 @@ import Button from '../common/Button.astro';
             name='fullname'
             aria-label='fullname'
             value=''
-            placeholder='Full name'
+            placeholder='Full Name'
             type='text'
           />
           <p
@@ -65,14 +65,9 @@ import Button from '../common/Button.astro';
             name='company'
             aria-label='company'
             value=''
-            placeholder='Company name'
+            placeholder='Company Name (optional)'
             type='text'
           />
-          <p
-            id='company-error'
-            class='error'
-          >
-          </p>
         </div>
         <div class='input'>
           <label for='email'>Email address</label>
@@ -81,7 +76,7 @@ import Button from '../common/Button.astro';
             name='email'
             aria-label='email'
             value=''
-            placeholder='Email address'
+            placeholder='Email Address'
             type='text'
           />
           <p
@@ -97,7 +92,7 @@ import Button from '../common/Button.astro';
             name='message'
             aria-label='message'
             value=''
-            placeholder='Your message'
+            placeholder='Your Message'
             type='text'
           />
           <p
@@ -130,6 +125,7 @@ import Button from '../common/Button.astro';
   .container {
     display: grid;
     grid-template-columns: 1fr;
+    margin-bottom: 1.5rem;
   }
 
   .left-section {
@@ -187,6 +183,7 @@ import Button from '../common/Button.astro';
       display: none;
       margin-top: 0.5rem;
       color: $error;
+      font-size: 1.125rem;
     }
   }
 
@@ -211,13 +208,14 @@ import Button from '../common/Button.astro';
       display: grid;
 
       p {
-        max-width: 20rem;
-        margin: 2rem 0;
+        max-width: 26rem;
+        margin: 2rem 2rem 2rem 0;
       }
 
       .contact {
         display: flex;
         flex-direction: column;
+        margin-bottom: 0;
 
         .info {
           display: flex;
@@ -243,7 +241,6 @@ import Button from '../common/Button.astro';
     const inputs = document.querySelectorAll('input');
     const errors = {
       fullname: '',
-      company: '',
       email: '',
       message: '',
     };
@@ -254,14 +251,6 @@ import Button from '../common/Button.astro';
           errors.fullname += 'Please enter your full name';
         } else {
           errors.fullname = '';
-        }
-      }
-
-      if (input.name === 'company') {
-        if (!validateText(input, 1)) {
-          errors.company += 'Please enter your company name';
-        } else {
-          errors.company = '';
         }
       }
 
