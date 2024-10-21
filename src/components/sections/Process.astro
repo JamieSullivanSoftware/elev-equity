@@ -1,76 +1,31 @@
 ---
-import NumberCircle from '../common/NumberCircle.astro';
+import Step from '../common/Step.astro';
 ---
 
 <section id='process'>
   <div class='wrapper'>
     <h2 class='lf-semibold'>Our approach</h2>
-    <div class='guide'>
-      <div class='line'></div>
-      <div class='numbers sans-regular'>
-        <NumberCircle label='1' />
-        <NumberCircle label='2' />
-        <NumberCircle label='3' />
-        <NumberCircle label='4' />
-      </div>
-    </div>
     <div class='container'>
-      <span class='tablet-line'></span>
-      <div>
-        <div class='tablet-num'>
-          <NumberCircle label='1' />
-        </div>
-        <div>
-          <h3 class='sans-medium'>Connect & Understand</h3>
-          <p class='sans-regular'>
-            Our first touchpoint is always a no-cost, 30-minute call where we’ll
-            dive into your business challenges, aspirations, and pain points. I
-            focus on understanding what truly matters to you. Meeting and
-            connecting with new people is invaluable to me—it’s not about the
-            bill; it’s about building relationships.
-          </p>
-        </div>
-      </div>
-      <div>
-        <div class='tablet-num'>
-          <NumberCircle label='2' />
-        </div>
-        <div>
-          <h3 class='sans-medium'>Tailored Advisory</h3>
-          <p class='sans-regular'>
-            We'll spend more time together to go deeper. I apply the same proven
-            methodologies from my corporate experience, but in a way that’s
-            scalable and accessible for small businesses. Whether you need
-            financial analysis, operational efficiency, or strategic planning,
-            I’ll help you identify actionable steps.
-          </p>
-        </div>
-      </div>
-      <div>
-        <div class='tablet-num'>
-          <NumberCircle label='3' />
-        </div>
-        <div>
-          <h3 class='sans-medium'>Actionable Plan</h3>
-          <p class='sans-regular'>
-            No complicated jargon, just a straightforward roadmap for success.
-            You’ll receive a customised plan that you can easily implement.
-          </p>
-        </div>
-      </div>
-      <div>
-        <div class='tablet-num'>
-          <NumberCircle label='4' />
-        </div>
-        <div>
-          <h3 class='sans-medium'>Ongoing Support</h3>
-          <p class='sans-regular'>
-            I’ll be with you every step of the way. From plan implementation to
-            ongoing growth strategies, I provide continuous support to help you
-            navigate challenges and opportunities.
-          </p>
-        </div>
-      </div>
+      <Step
+        num='1'
+        heading='Connect and Understand'
+        content='I prioritise building relationships, not charging fees. Our first meeting is free - a conversation to uncover your business challenges and goals, with a focus on what truly matters to you.'
+      />
+      <Step
+        num='2'
+        heading='Tailored Advisory'
+        content='We’ll dive deeper together to uncover actionable steps that drive real results. Whether it’s financial analysis, operational efficiency, or strategic planning, we apply proven corporate methodologies scaled for small businesses.'
+      />
+      <Step
+        num='3'
+        heading='Clear, Actionable Plan'
+        content='No complicated jargon, just a straightforward roadmap for success. You’ll receive a customised plan that you can easily implement.'
+      />
+      <Step
+        num='4'
+        heading='Ongoing Support'
+        content='I’ll be with you every step of the way. From plan implementation to ongoing growth strategies, I provide continuous support to help you navigate challenges and opportunities.'
+      />
     </div>
   </div>
 </section>
@@ -88,97 +43,23 @@ import NumberCircle from '../common/NumberCircle.astro';
     margin-bottom: 1.75rem;
   }
 
-  .guide {
-    display: none;
-  }
-
   .container {
     display: grid;
+    justify-items: center;
     grid-template-columns: 1fr;
-    grid-gap: 1.5rem;
-    position: relative;
-
-    > div {
-      display: grid;
-      grid-template-columns: min-content 1fr;
-      grid-gap: 1.5rem;
-      align-items: center;
-    }
-
-    h3 {
-      margin-bottom: 0.25rem;
-    }
-  }
-
-  .tablet-num {
-    display: block;
-    z-index: 2;
-  }
-
-  .tablet-line {
-    position: absolute;
-    left: 1.3rem;
-    top: 10%;
-    width: 0.125rem;
-    background-color: $dark;
-    height: 80%;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   // Above tablet
-  @media only screen and (min-width: $tablet) {
+  @media only screen and (min-width: $desktop) {
     h2 {
       margin-bottom: 3rem;
     }
-
-    .guide {
-      display: block;
-      position: relative;
-      margin: 0 6rem 2.5rem;
-
-      .line {
-        border-bottom: 0.125rem solid $dark;
-      }
-
-      .numbers {
-        bottom: -1.25rem;
-        position: absolute;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-
-        span {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border: 0.125rem solid $dark;
-          border-radius: 50%;
-          width: 2.5rem;
-          height: 2.5rem;
-          background-color: $white;
-        }
-      }
-    }
-
     .container {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 1rem;
-
-      > div {
-        display: block;
-      }
-
-      h3 {
-        margin-bottom: 0.75rem;
-      }
-    }
-
-    .tablet-num {
-      display: none;
-    }
-
-    .tablet-line {
-      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
     }
   }
 </style>
