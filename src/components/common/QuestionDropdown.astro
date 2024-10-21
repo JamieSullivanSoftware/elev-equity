@@ -11,15 +11,20 @@ const { question, index } = Astro.props;
 const { text, answer } = question;
 ---
 
-<div class='container sans-regular'>
+<div
+  id={`question-${index}`}
+  class='faq container sans-regular'
+  data-show='false'
+  aria-label={`FAQ dropdown button ${index + 1}`}
+>
   <div class='question'>
     <div>
       <span>{`${index} .`}</span>
       <p>{text}</p>
     </div>
-    <button
-      id={`button-${index}`}
-      class='faq'
+    <div
+      id={`icon-${index}`}
+      class='icon'
       data-show='false'
       aria-label={`FAQ dropdown button ${index + 1}`}
     >
@@ -28,7 +33,7 @@ const { text, answer } = question;
         width={30}
         height={30}
       />
-    </button>
+    </div>
   </div>
   <div
     id={`answer-${index}`}
@@ -43,6 +48,7 @@ const { text, answer } = question;
   @import '../../styles/variables.scss';
 
   .container {
+    cursor: pointer;
     color: $dark;
     background-color: $neutral-light;
     margin-bottom: 2rem;
@@ -70,9 +76,7 @@ const { text, answer } = question;
       }
     }
 
-    button {
-      cursor: pointer;
-
+    .icon {
       &[data-show='false'] {
         transition: rotate 0.2s ease;
         rotate: -45deg;
@@ -117,24 +121,25 @@ const { text, answer } = question;
 </style>
 
 <script>
-  const buttons = document.querySelectorAll('button.faq');
+  const questions = document.querySelectorAll('.faq');
 
-  buttons.forEach((button) => {
-    const id = button.id.split('-')[1];
+  questions.forEach((question) => {
+    const id = question.id.split('-')[1];
     const answerElement = document.getElementById(`answer-${id}`);
     answerElement.style.setProperty(
       '--openHeight',
       answerElement.scrollHeight + 'px'
     );
 
-    button.addEventListener('click', () => {
-      openDropdown(id);
+    question.addEventListener('click', () => {
+      openDropdown(id, questions);
     });
   });
 
-  const openDropdown = (id: string) => {
-    const buttonElement = document.getElementById(`button-${id}`);
+  const openDropdown = (id: string, questions: NodeListOf<Element>) => {
+    const questionElement = document.getElementById(`question-${id}`);
     const answerElement = document.getElementById(`answer-${id}`);
+    const iconElement = document.getElementById(`icon-${id}`);
 
     answerElement.style.setProperty(
       '--openHeight',
@@ -142,11 +147,24 @@ const { text, answer } = question;
     );
 
     if (answerElement.dataset.show === 'false') {
-      buttonElement.dataset.show = 'true';
+      questionElement.dataset.show = 'true';
       answerElement.dataset.show = 'true';
+      iconElement.dataset.show = 'true';
     } else {
-      buttonElement.dataset.show = 'false';
+      questionElement.dataset.show = 'false';
       answerElement.dataset.show = 'false';
+      iconElement.dataset.show = 'false';
     }
+
+    // Close Open Dropdown
+    questions.forEach((question) => {
+      const questionId = question.id.split('-')[1];
+      if (questionId !== id) {
+        document.getElementById(`question-${questionId}`).dataset.show =
+          'false';
+        document.getElementById(`answer-${questionId}`).dataset.show = 'false';
+        document.getElementById(`icon-${questionId}`).dataset.show = 'false';
+      }
+    });
   };
 </script>

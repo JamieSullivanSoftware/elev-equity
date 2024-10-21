@@ -1,11 +1,11 @@
 @use 'sass:color';
 
 // Colors
-$primary: #2e1f8b;
-$dark: #080F2F;
+$primary: #143370;
+$dark: #050B25;
 $white: #fefeff;
-$neutral-light: #e7e7f0;
-$neutral-dark: #a29fb9;
+$neutral-light: #e8e9ee;
+$neutral-dark: #717587;
 $success: #0cae3a;
 $error: #d51616;
 $link-hover-color: color.scale($primary, $lightness: 75%);
