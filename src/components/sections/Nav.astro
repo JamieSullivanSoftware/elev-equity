@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../../images/logo.svg';
+import logo from '../../images/hsn-logo.svg';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
@@ -12,49 +12,49 @@ const { links } = Astro.props;
 
 <nav>
   <div class='wrapper container'>
-    <div>
-      <a
-        href='#'
-        aria-label='logo link'
-      >
-        <Image
-          src={logo}
-          alt='Logo'
-          width='70'
-          height='59'
-        />
-      </a>
+    <a
+      href='#'
+      aria-label='logo link'
+      class='logo'
+    >
+      <Image
+        src={logo}
+        alt='Logo'
+        width='43'
+        height='60'
+      />
+    </a>
 
-      <button
-        data-active='false'
-        id='mobile-button'
-        aria-label='mobile menu button'
-        type='button'
-      >
-        <Icon
-          class='mobile-icon'
-          name='material-symbols:menu-rounded'
-          width={40}
-          height={40}
-        />
-      </button>
+    <button
+      data-active='false'
+      id='mobile-button'
+      class='mobile-button'
+      aria-label='mobile menu button'
+      type='button'
+    >
+      <Icon
+        class='mobile-icon'
+        name='material-symbols:menu-rounded'
+        width={48}
+        height={48}
+      />
+    </button>
 
-      <ul>
-        {
-          links.map((link: string) => (
-            <li>
-              <button
-                class='lf-medium nav-link'
-                aria-label={`nav link ${link}`}
-                type='button'
-              >
-                {link}
-              </button>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+    <ul>
+      {
+        links.map((link: string) => (
+          <li>
+            <button
+              class='lf-medium nav-link'
+              aria-label={`nav link ${link}`}
+              type='button'
+            >
+              {link}
+            </button>
+          </li>
+        ))
+      }
+    </ul>
   </div>
   <div
     id='mobile-menu'
@@ -88,18 +88,19 @@ const { links } = Astro.props;
     position: sticky;
     top: 0;
     z-index: 10;
-    height: 5rem;
+    height: 3.75rem;
+    padding: 1.25rem 0;
+    // display: flex;
+    // justify-content: center;
   }
 
   .container {
-    > div {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 0rem;
-    }
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    height: 100%;
 
-    ul {
+    ul,
+    .logo {
       display: none;
     }
   }
@@ -159,12 +160,10 @@ const { links } = Astro.props;
     }
 
     li {
+      margin: 0.75rem 0;
+
       &:first-child {
         margin: 0.5rem 0 0.75rem !important;
-      }
-
-      &:not(:last-child) {
-        margin: 0.75rem 0;
       }
     }
 
@@ -190,7 +189,7 @@ const { links } = Astro.props;
 
     &[data-active='true'] {
       ul {
-        height: 15.625rem;
+        height: 19rem;
         opacity: 1;
         transition: all 0.5s ease;
         list-style-type: none;
@@ -205,15 +204,27 @@ const { links } = Astro.props;
     }
 
     .container {
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      align-items: center;
+      gap: 1.25rem;
+
       ul {
         display: grid;
         grid-template-columns: repeat(5, min-content);
-        grid-gap: 1rem;
+        grid-gap: 2rem;
         list-style: none;
+        justify-self: center;
+        margin-right: 5rem;
+      }
+
+      .logo {
+        display: block;
       }
     }
 
-    .mobile-icon {
+    .mobile-icon,
+    .mobile-button {
       display: none;
     }
 
